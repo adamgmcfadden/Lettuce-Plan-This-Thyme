@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS project2_mealPlanning_tempName;
+
+CREATE DATABASE project2_mealPlanning_tempName;
