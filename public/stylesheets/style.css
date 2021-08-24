@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+.hero {
+    text-align: center;
+}
+
+.sign-up-form h2,
+.login-form h2 {
+    text-align: center;
+}
