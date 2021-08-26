@@ -6,9 +6,17 @@
         <button class="btn btn-outline-success search-btn" type="submit">Search</button>
     </form>
 </div>
+<div class="container">
+    {{#if data}}
+    {{#each this}}
+    {{> recipes/recipe-card data}}
+    {{/each}}
+    {{/if}}
+</div>
 <br>
 <div class="container hero">
     <h2>Let's Make a Plan</h1>
     <p>Sign-up to enjoy our meal scheduler and receive daily reminders for recipes and ingredients!</p>
     <a href="/signup">Sign up now</a>
 </div>
+<script src='/javascript/recipe-search.js'></script>
