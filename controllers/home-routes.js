@@ -21,7 +21,7 @@ router.get('/recipes', (req, res) => {
 
 router.post('/recipeSearch', (req, res) => {
 
-    const search = (req.body.searchValue)
+    const search = (req.body)
     console.log(search)
     // const result = 
     // await 
