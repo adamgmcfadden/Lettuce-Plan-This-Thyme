@@ -105,3 +105,4 @@ router.post("/logout", withAuth, (req, res) => {
     res.status(404).end();
   }
 });
+module.exports = router;

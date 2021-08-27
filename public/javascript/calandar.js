@@ -73,7 +73,7 @@ function days_in_month(month, year) {
   return (monthEnd - monthStart) / (1000 * 60 * 60 * 24);
 }
 
-// Event handler for when a date is clicked
+//  handler for when a date is clicked
 function date_click(meal) {
   $(".meals-container").show(250);
   $("#dialog").hide(250);
@@ -82,7 +82,7 @@ function date_click(meal) {
   show_meals(meal.data.meals, meal.data.month, meal.data.day);
 }
 
-// Event handler for when a month is clicked
+//  handler for when a month is clicked
 function month_click(meal) {
   $(".meals-container").show(250);
   $("#dialog").hide(250);
@@ -94,7 +94,7 @@ function month_click(meal) {
   init_calendar(date);
 }
 
-// Event handler for when the year right-button is clicked
+//  handler for when the year right-button is clicked
 function next_year(meal) {
   $("#dialog").hide(250);
   var date = meal.data.date;
@@ -104,7 +104,7 @@ function next_year(meal) {
   init_calendar(date);
 }
 
-// Event handler for when the year left-button is clicked
+//  handler for when the year left-button is clicked
 function prev_year(meal) {
   $("#dialog").hide(250);
   var date = meal.data.date;
@@ -114,7 +114,7 @@ function prev_year(meal) {
   init_calendar(date);
 }
 
-// Event handler for clicking the new meal button
+//  handler for clicking the new meal button
 function new_meal(meal) {
   // if a date isn't selected then do nothing
   if ($(".active-date").length === 0) return;
@@ -127,14 +127,14 @@ function new_meal(meal) {
   $("#dialog input[type=number]").val("");
   $(".meals-container").hide(250);
   $("#dialog").show(250);
-  // Event handler for cancel button
+  //  handler for cancel button
   $("#cancel-button").click(function () {
     $("#name").removeClass("error-input");
     $("#count").removeClass("error-input");
     $("#dialog").hide(250);
     $(".meals-container").show(250);
   });
-  // Event handler for ok button
+  //  handler for ok button
   $("#ok-button")
     .unbind()
     .click({ date: meal.data.date }, function () {
