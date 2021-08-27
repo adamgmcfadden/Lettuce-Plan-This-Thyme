@@ -16,7 +16,7 @@ router.get("/login", (req, res) => {
 
 
 router.get('/recipes', (req, res) => {
-    res.render('recipes');
+    res.render('recipes', { style: "style.css" });
 });
 
 
@@ -34,10 +34,14 @@ router.post('/recipes', (req, res) => {
     .then(json => {
         const data = {
             recipes: json.results
-        }
+        };
         console.log(data)
         res.render('recipes', data)
     })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 })
 
 module.exports = router;

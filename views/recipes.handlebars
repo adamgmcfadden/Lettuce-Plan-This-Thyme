@@ -1,7 +1,7 @@
 <div class="container">
   <h1>All Of Our Recipes</h1>
 
-  <ul>
+  {{!-- <ul>
     {{#each data}}
       <li>
         <p>Class: {{class}}</p>
@@ -13,9 +13,11 @@
       </li>
     {{/each}}
   </ul>
-</div>
+</div> --}}
 
-{{> recipes/recipe-card data}}
+{{#each recipe}}
+{{> recipes/recipe-card }}
+{{/each}}
 
 
 
