@@ -13,10 +13,8 @@ router.get("/login", (req, res) => {
   res.render("login", { style: "style.css" });
 });
 
-
-router.get('/recipes', (req, res) => {
-    res.render('recipes', data)
-})
+router.get("/recipes", (req, res) => {
+  res.render("recipes", data);
+});
 
 module.exports = router;
-
