@@ -15,10 +15,9 @@ router.get("/login", (req, res) => {
 });
 
 
-router.get('/recipes', (req, res) => {
-    res.render('recipes');
+router.get("/recipes", (req, res) => {
+  res.render("recipes", data);
 });
-
 
 router.post('/recipes', async (req, res) => {
     console.log(req.body.searchValue)
@@ -36,8 +35,7 @@ router.post('/recipes', async (req, res) => {
     // console.log(fetchResult)
     console.log(data)
     res.render('recipes', data)
+});
 
-})
 
 module.exports = router;
-
