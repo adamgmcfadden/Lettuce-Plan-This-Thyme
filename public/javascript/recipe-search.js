@@ -1,3 +1,5 @@
+// const { response } = require("express");
+
 async function getRecipe(event) {
     event.preventDefault();
 
@@ -11,8 +13,12 @@ async function getRecipe(event) {
         },
         body: JSON.stringify(data)
     };
-    fetch('/recipes', options);
-    document.location.replace('/recipes');   
+    fetch('/recipeSearch', options)
+    .then(response => {
+        console.log(response)
+    })
+
+    // .then(document.location.replace('/recipes'));  
 };
 
 document.querySelector('.search-form').addEventListener('submit', getRecipe);
