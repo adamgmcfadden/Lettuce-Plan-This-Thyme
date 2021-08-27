@@ -14,11 +14,9 @@ router.get("/login", (req, res) => {
   res.render("login", { style: "style.css" });
 });
 
-
 router.get('/recipes', (req, res) => {
-    res.render('recipes', { style: "style.css" });
+    res.render('recipes', { data, style: "style.css" });
 });
-
 
 router.post('/recipes', (req, res) => {
 
@@ -33,14 +31,17 @@ router.post('/recipes', (req, res) => {
     })
     .then(json => {
         const data = {
-            recipes: json.results
+            recipes: json.results,
         };
         console.log(data)
-        res.render('recipes', data)
+        router.get('/recipes', (req, res) => {
+            res.render('recipes', { data, style: "style.css" });
+        });
+        // res.render('recipes', { data, style: "style.css"})
     })
     .catch(err => {
         console.log(err);
-        res.status(500).json(err);
+        // res.status(500).json(err);
       });
 })
 
