@@ -22,7 +22,7 @@ function getRecipe(searchValue) {
             recipeCard.className = "card recipe-card col-5";
             recipesDiv.append(recipeCard) 
 
-            const recipeTitle = document.createElement('h3');
+            const recipeTitle = document.createElement('h5');
             recipeTitle.innerText = `${recipe.title}`;
             recipeCard.appendChild(recipeTitle);
 
