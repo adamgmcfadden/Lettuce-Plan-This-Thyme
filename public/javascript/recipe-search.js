@@ -4,11 +4,10 @@
 const apiKey = "c0a5df971c94493aa3d688d219a0a28d"
 const url = "https://api.spoonacular.com/recipes/complexSearch?query="
 const url2 = "&addRecipeInformation=true&addRecipeNutrition=true&number=20&apiKey=c0a5df971c94493aa3d688d219a0a28d"
-const searchValue = document.querySelector('.search-bar').value.trim();
 
-function getRecipe(event) {
-    event.preventDefault();
+function getRecipe(searchValue) {
 
+    console.log(searchValue)
     fetch(url + searchValue + url2)
     
     .then (res => res.json())
@@ -53,7 +52,14 @@ function getRecipe(event) {
     }
 };
 
-document.querySelector('.search-form').addEventListener('submit', getRecipe);
+document.querySelector('.search-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    document.querySelector('#recipe-container').innerHTML = ""
+    const searchValue = document.querySelector('.search-bar').value.trim();
+    getRecipe(searchValue);
+    document.querySelector('.search-bar').value = "";
+
+});
 
       // const data = {
         //     recipe: res.results,
