@@ -6,23 +6,63 @@ const url = "https://api.spoonacular.com/recipes/complexSearch?query="
 const url2 = "&addRecipeInformation=true&addRecipeNutrition=true&number=20&apiKey=c0a5df971c94493aa3d688d219a0a28d"
 const searchValue = document.querySelector('.search-bar').value.trim();
 
-async function getRecipe(event) {
+function getRecipe(event) {
     event.preventDefault();
 
-   
     fetch(url + searchValue + url2)
     
-    .then (res => {
-        return res.json();
-    })
-    .then(res => {
-        const data = {
-            recipe: res.results,
-        };
-        console.log(data)
-    })
-    
-    // const data = { searchValue };
+    .then (res => res.json())
+    .then(recipes => showRecipes(recipes.results));
+   
+     showRecipes = recipes => {
+         const recipesDiv = document.querySelector('#recipe-container');
+
+         recipes.forEach(recipe => {
+
+            const recipeTitle = document.createElement('p');
+            recipeTitle.innerText = `${recipe.title}`;
+            recipesDiv.append(recipeTitle);
+
+            const recipeImage = document.createElement('img');
+            recipeImage.src = `${recipe.image}`;
+            recipesDiv.append(recipeImage);
+
+            const recipeServings = document.createElement('p');
+            recipeServings.innerText = `Serves: ${recipe.servings}`;
+            recipesDiv.append(recipeServings);
+
+            const recipeTime = document.createElement('p');
+            recipeTime.innerText = `Ready in: ${recipe.readyInMinutes} minutes`
+            recipesDiv.append(recipeTime)
+
+            const recipeURL = document.createElement('a');
+            recipeURL.href = `${recipe.sourceUrl}`;
+            recipeURL.target = `_blank`
+            recipeURL.innerText = `Click her for recipe!`;
+            recipesDiv.append(recipeURL)
+
+            const faveBtn = document.createElement('button');
+            faveBtn.innerText = `Add to favorites`;
+            recipesDiv.append(faveBtn);
+
+            const calendarBtn = document.createElement('button');
+            calendarBtn.innerText = 'Add to calendar';
+            recipesDiv.append(calendarBtn);
+             
+        });
+    }
+};
+
+document.querySelector('.search-form').addEventListener('submit', getRecipe);
+
+      // const data = {
+        //     recipe: res.results,
+        // };
+        // recipeArray = res.results
+        // recipeArray.forEach(element => {
+        //     console.log(element)
+
+            // const data = { searchValue };
     // const options = {
     //     method: 'POST',
     //     headers: {
@@ -35,9 +75,4 @@ async function getRecipe(event) {
     //     console.log(response)
     // })
 
-    // .then(document.location.replace('/recipes'));  
-};
-
-document.querySelector('.search-form').addEventListener('submit', getRecipe);
-
- 
+    // document.location.replace('/recipes'); 
