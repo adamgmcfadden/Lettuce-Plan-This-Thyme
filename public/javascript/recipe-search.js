@@ -18,7 +18,7 @@ async function getRecipe(event) {
         console.log(response)
     })
 
-    // .then(document.location.replace('/recipes'));  
+    .then(document.location.replace('/recipes'));  
 };
 
 document.querySelector('.search-form').addEventListener('submit', getRecipe);

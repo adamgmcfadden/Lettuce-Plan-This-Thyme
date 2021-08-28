@@ -25,7 +25,7 @@ router.post('/recipeSearch', (req, res) => {
     console.log(search)
     // const result = 
     // await 
-    fetch("https://api.spoonacular.com/recipes/complexSearch?query=" + search + "&addRecipeInformation=true&addRecipeNutrition=true&number=20&apiKey=ca7027577b24470592ca8275b05b47b3")
+    fetch("https://api.spoonacular.com/recipes/complexSearch?query=" + search + "&addRecipeInformation=true&addRecipeNutrition=true&number=20&apiKey=c0a5df971c94493aa3d688d219a0a28d")
     .then (response => {
         return response.json();
     })
@@ -48,3 +48,5 @@ router.post('/recipeSearch', (req, res) => {
 
 module.exports = router;
 
+// kt api
+const apiKey = "c0a5df971c94493aa3d688d219a0a28d"
