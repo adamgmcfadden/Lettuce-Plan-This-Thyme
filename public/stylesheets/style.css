@@ -6,6 +6,10 @@
     text-align: center;
 }
 
+.recipe-card {
+    margin: 20px 0px;
+}
+
 .sign-up-form h2,
 .login-form h2 {
     text-align: center;
