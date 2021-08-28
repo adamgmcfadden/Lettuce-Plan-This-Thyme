@@ -3,7 +3,7 @@
 // kt api
 // const apiKey = "c0a5df971c94493aa3d688d219a0a28d"
 const url = "https://api.spoonacular.com/recipes/complexSearch?query="
-const url2 = "&addRecipeInformation=true&addRecipeNutrition=true&number=20&apiKey=c0a5df971c94493aa3d688d219a0a28d"
+const url2 = "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey=ca7027577b24470592ca8275b05b47b3"
 
 function getRecipe(searchValue) {
 
@@ -16,7 +16,7 @@ function getRecipe(searchValue) {
      showRecipes = recipes => {
          const recipesDiv = document.querySelector('#recipe-container');
 
-         recipes.forEach(recipe => {
+         recipes.forEach(recipe=> {
 
             const recipeCard = document.createElement('div');
             recipeCard.className = "card recipe-card col-5";
@@ -29,6 +29,17 @@ function getRecipe(searchValue) {
             const recipeImage = document.createElement('img');
             recipeImage.src = `${recipe.image}`;
             recipeCard.appendChild(recipeImage);
+
+            const ingredients = document.createElement('div');
+            ingredients.className = "ingredients";
+            ingredients.innerText = `Ingredients: `
+            recipeCard.append(ingredients)
+
+            for(i = 0; i < `${recipe.extendedIngredients.length}`; i++) {
+            const recipeIngredients = document.createElement('span');
+            recipeIngredients.innerText = `${recipe.extendedIngredients[i].name}, `;
+            ingredients.appendChild(recipeIngredients);
+            }
 
             const recipeServings = document.createElement('li');
             recipeServings.innerText = `Serves: ${recipe.servings}`;
@@ -51,7 +62,7 @@ function getRecipe(searchValue) {
             const calendarBtn = document.createElement('button');
             calendarBtn.innerText = 'Add to calendar';
             recipeCard.appendChild(calendarBtn);
-             
+ 
         });
     }
 };
@@ -63,4 +74,3 @@ document.querySelector('.search-form').addEventListener('submit', function(event
     getRecipe(searchValue);
     document.querySelector('.search-bar').value = "";
 });
-
