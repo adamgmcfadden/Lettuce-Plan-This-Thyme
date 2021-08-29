@@ -30,6 +30,22 @@ function getRecipe(searchValue) {
             recipeImage.src = `${recipe.image}`;
             recipeCard.appendChild(recipeImage);
 
+            // const recipeSummary = document.createElement('span');
+            // recipeSummary.innertext = `${recipe.summary}`;
+            // recipeCard.appendChild(recipeSummary);
+
+            const recipeCals = document.createElement('li');
+            recipeCals.innerText = `Calories: ${recipe.nutrition.nutrients[0].amount} per serving`;
+            recipeCard.appendChild(recipeCals);
+            
+            const recipeServings = document.createElement('li');
+            recipeServings.innerText = `Serves: ${recipe.servings}`;
+            recipeCard.appendChild(recipeServings);
+
+            const recipeTime = document.createElement('li');
+            recipeTime.innerText = `Ready in: ${recipe.readyInMinutes} minutes`
+            recipeCard.appendChild(recipeTime)
+
             const ingredients = document.createElement('div');
             ingredients.className = "ingredients";
             ingredients.innerText = `Ingredients: `
@@ -40,14 +56,6 @@ function getRecipe(searchValue) {
             recipeIngredients.innerText = `${recipe.extendedIngredients[i].name}, `;
             ingredients.appendChild(recipeIngredients);
             }
-
-            const recipeServings = document.createElement('li');
-            recipeServings.innerText = `Serves: ${recipe.servings}`;
-            recipeCard.appendChild(recipeServings);
-
-            const recipeTime = document.createElement('li');
-            recipeTime.innerText = `Ready in: ${recipe.readyInMinutes} minutes`
-            recipeCard.appendChild(recipeTime)
 
             const recipeURL = document.createElement('a');
             recipeURL.href = `${recipe.sourceUrl}`;
