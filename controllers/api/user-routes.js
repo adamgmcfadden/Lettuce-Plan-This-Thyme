@@ -3,6 +3,17 @@ const router = require("express").Router();
 const { User, Recipes, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+router.get("/", (req, res) => {
+  User.findAll({
+    attributes: { exclude: ["password"] },
+  })
+    .then((dbUserData) => res.json(dbUserData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 router.get("/:id", (req, res) => {
   User.findOne({
     attributes: { exclude: ["password"] },
@@ -92,6 +103,7 @@ router.post("/login", (req, res) => {
       req.session.loggedIn = true;
 
       res.json({ user: dbUserData, message: "You are now logged in!" });
+      console.log("logged");
     });
   });
 });
@@ -105,3 +117,4 @@ router.post("/logout", withAuth, (req, res) => {
     res.status(404).end();
   }
 });
+module.exports = router;

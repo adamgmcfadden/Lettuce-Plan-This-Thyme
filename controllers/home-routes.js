@@ -15,6 +15,7 @@ router.get("/login", (req, res) => {
   res.render("login", { style: "style.css" });
 });
 
+
 router.get('/recipes', (req, res) => {
     res.render('recipes', { style: "style.css" });
 });
@@ -46,5 +47,5 @@ router.post('/recipeSearch', (req, res) => {
       });
 })
 
-module.exports = router;
 
+module.exports = router;

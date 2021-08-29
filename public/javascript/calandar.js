@@ -6,18 +6,18 @@ $(document).ready(function () {
   $(".right-button").click({ date: date }, next_year);
   $(".left-button").click({ date: date }, prev_year);
   $(".month").click({ date: date }, month_click);
-  $("#add-button").click({ date: date }, new_event);
+  $("#add-button").click({ date: date }, new_meal);
   // Set current month as active
   $(".months-row").children().eq(date.getMonth()).addClass("active-month");
   init_calendar(date);
-  var events = check_events(today, date.getMonth() + 1, date.getFullYear());
-  show_events(events, months[date.getMonth()], today);
+  var meals = check_meals(today, date.getMonth() + 1, date.getFullYear());
+  show_meals(meals, months[date.getMonth()], today);
 });
 
 // Initialize the calendar by appending the HTML dates
 function init_calendar(date) {
   $(".tbody").empty();
-  $(".events-container").empty();
+  $(".meals-container").empty();
   var calendar_days = $(".tbody");
   var month = date.getMonth();
   var year = date.getFullYear();
@@ -44,18 +44,18 @@ function init_calendar(date) {
       row.append(curr_date);
     } else {
       var curr_date = $("<td class='table-date'>" + day + "</td>");
-      var events = check_events(day, month + 1, year);
+      var meals = check_meals(day, month + 1, year);
       if (today === day && $(".active-date").length === 0) {
         curr_date.addClass("active-date");
-        show_events(events, months[month], day);
+        show_meals(meals, months[month], day);
       }
-      // If this date has any events, style it with .event-date
-      if (events.length !== 0) {
-        curr_date.addClass("event-date");
+      // If this date has any meals, style it with .meal-date
+      if (meals.length !== 0) {
+        curr_date.addClass("meal-date");
       }
       // Set onClick handler for clicking a date
       curr_date.click(
-        { events: events, month: months[month], day: day },
+        { meals: meals, month: months[month], day: day },
         date_click
       );
       row.append(curr_date);
@@ -73,20 +73,20 @@ function days_in_month(month, year) {
   return (monthEnd - monthStart) / (1000 * 60 * 60 * 24);
 }
 
-// Event handler for when a date is clicked
-function date_click(event) {
-  $(".events-container").show(250);
+//  handler for when a date is clicked
+function date_click(meal) {
+  $(".meals-container").show(250);
   $("#dialog").hide(250);
   $(".active-date").removeClass("active-date");
   $(this).addClass("active-date");
-  show_events(event.data.events, event.data.month, event.data.day);
+  show_meals(meal.data.meals, meal.data.month, meal.data.day);
 }
 
-// Event handler for when a month is clicked
-function month_click(event) {
-  $(".events-container").show(250);
+//  handler for when a month is clicked
+function month_click(meal) {
+  $(".meals-container").show(250);
   $("#dialog").hide(250);
-  var date = event.data.date;
+  var date = meal.data.date;
   $(".active-month").removeClass("active-month");
   $(this).addClass("active-month");
   var new_month = $(".month").index(this);
@@ -94,51 +94,51 @@ function month_click(event) {
   init_calendar(date);
 }
 
-// Event handler for when the year right-button is clicked
-function next_year(event) {
+//  handler for when the year right-button is clicked
+function next_year(meal) {
   $("#dialog").hide(250);
-  var date = event.data.date;
+  var date = meal.data.date;
   var new_year = date.getFullYear() + 1;
   $("year").html(new_year);
   date.setFullYear(new_year);
   init_calendar(date);
 }
 
-// Event handler for when the year left-button is clicked
-function prev_year(event) {
+//  handler for when the year left-button is clicked
+function prev_year(meal) {
   $("#dialog").hide(250);
-  var date = event.data.date;
+  var date = meal.data.date;
   var new_year = date.getFullYear() - 1;
   $("year").html(new_year);
   date.setFullYear(new_year);
   init_calendar(date);
 }
 
-// Event handler for clicking the new event button
-function new_event(event) {
+//  handler for clicking the new meal button
+function new_meal(meal) {
   // if a date isn't selected then do nothing
   if ($(".active-date").length === 0) return;
   // remove red error input on click
   $("input").click(function () {
     $(this).removeClass("error-input");
   });
-  // empty inputs and hide events
+  // empty inputs and hide meals
   $("#dialog input[type=text]").val("");
   $("#dialog input[type=number]").val("");
-  $(".events-container").hide(250);
+  $(".meals-container").hide(250);
   $("#dialog").show(250);
-  // Event handler for cancel button
+  //  handler for cancel button
   $("#cancel-button").click(function () {
     $("#name").removeClass("error-input");
     $("#count").removeClass("error-input");
     $("#dialog").hide(250);
-    $(".events-container").show(250);
+    $(".meals-container").show(250);
   });
-  // Event handler for ok button
+  //  handler for ok button
   $("#ok-button")
     .unbind()
-    .click({ date: event.data.date }, function () {
-      var date = event.data.date;
+    .click({ date: meal.data.date }, function () {
+      var date = meal.data.date;
       var name = $("#name").val().trim();
       var count = $("#count").val();
       var day = parseInt($(".active-date").html());
@@ -149,93 +149,93 @@ function new_event(event) {
         $("#count").addClass("error-input");
       } else {
         $("#dialog").hide(250);
-        console.log("new event");
-        new_event_json(name, count, date, day);
+        console.log("new meal");
+        new_meal_json(name, count, date, day);
         date.setDate(day);
         init_calendar(date);
       }
     });
 }
 
-// Adds a json event to event_data
-function new_event_json(name, count, date, day) {
-  var event = {
+// Adds a json meal to meal_data
+function new_meal_json(name, count, date, day) {
+  var meal = {
     occasion: name,
     invited_count: count,
     year: date.getFullYear(),
     month: date.getMonth() + 1,
     day: day,
   };
-  event_data["events"].push(event);
+  meal_data["meals"].push(meal);
 }
 
-// Display all events of the selected date in card views
-function show_events(events, month, day) {
+// Display all meals of the selected date in card views
+function show_meals(meals, month, day) {
   // Clear the dates container
-  $(".events-container").empty();
-  $(".events-container").show(250);
-  console.log(event_data["events"]);
-  // If there are no events for this date, notify the user
-  if (events.length === 0) {
-    var event_card = $("<div class='event-card'></div>");
-    var event_name = $(
-      "<div class='event-name'>There are no meals planned for " +
+  $(".meals-container").empty();
+  $(".meals-container").show(250);
+  console.log(meal_data["meals"]);
+  // If there are no meals for this date, notify the user
+  if (meals.length === 0) {
+    var meal_card = $("<div class='meal-card'></div>");
+    var meal_name = $(
+      "<div class='meal-name'>There are no meals planned for " +
         month +
         " " +
         day +
         ".</div>"
     );
-    $(event_card).css({ "border-left": "10px solid #FF1744" });
-    $(event_card).append(event_name);
-    $(".events-container").append(event_card);
+    $(meal_card).css({ "border-left": "10px solid #FF1744" });
+    $(meal_card).append(meal_name);
+    $(".meals-container").append(meal_card);
   } else {
-    // Go through and add each event as a card to the events container
-    for (var i = 0; i < events.length; i++) {
-      var event_card = $("<div class='event-card'></div>");
-      var event_name = $(
-        "<div class='event-name'>" + events[i]["occasion"] + ":</div>"
+    // Go through and add each meal as a card to the meals container
+    for (var i = 0; i < meals.length; i++) {
+      var meal_card = $("<div class='meal-card'></div>");
+      var meal_name = $(
+        "<div class='meal-name'>" + meals[i]["occasion"] + ":</div>"
       );
-      var event_count = $(
-        "<div class='event-count'>" +
+      var meal_count = $(
+        "<div class='meal-count'>" +
           " Meal: " +
-          events[i]["invited_count"] +
+          meals[i]["invited_count"] +
           ":</div>"
       );
-      if (events[i]["cancelled"] === true) {
-        $(event_card).css({
+      if (meals[i]["cancelled"] === true) {
+        $(meal_card).css({
           "border-left": "10px solid #FF1744",
         });
-        event_count = $("<div class='event-cancelled'>Cancelled</div>");
+        meal_count = $("<div class='meal-cancelled'>Cancelled</div>");
       }
-      console.log(event_count);
-      $(event_card).append(event_count).append(event_name);
-      $(".events-container").append(event_card);
+      console.log(meal_count);
+      $(meal_card).append(meal_count).append(meal_name);
+      $(".meals-container").append(meal_card);
     }
   }
 }
 
-// Checks if a specific date has any events
-function check_events(day, month, year) {
-  var events = [];
-  for (var i = 0; i < event_data["events"].length; i++) {
-    var event = event_data["events"][i];
+// Checks if a specific date has any meals
+function check_meals(day, month, year) {
+  var meals = [];
+  for (var i = 0; i < meal_data["meals"].length; i++) {
+    var meal = meal_data["meals"][i];
     if (
-      event["day"] === day &&
-      event["month"] === month &&
-      event["year"] === year
+      meal["day"] === day &&
+      meal["month"] === month &&
+      meal["year"] === year
     ) {
-      events.push(event);
+      meals.push(meal);
       console.log("found");
     }
   }
-  return events;
+  return meals;
 }
 
-// Given data for events in JSON format
-var event_data = {
-  events: [
+// Given data for meals in JSON format
+var meal_data = {
+  meals: [
     {
-      occasion: " Repeated Test Event ",
+      occasion: " Repeated Test meal ",
       invited_count: 120,
       year: 2020,
       month: 5,
@@ -250,7 +250,7 @@ var event_data = {
       day: 11,
     },
     {
-      occasion: " Repeated Test Event ",
+      occasion: " Repeated Test meal ",
       invited_count: 120,
       year: 2020,
       month: 5,
@@ -258,14 +258,14 @@ var event_data = {
       cancelled: true,
     },
     {
-      occasion: " Repeated Test Event ",
+      occasion: " Repeated Test meal ",
       invited_count: 120,
       year: 2021,
       month: 8,
       day: 10,
     },
     {
-      occasion: " Repeated Test Event ",
+      occasion: " Repeated Test meal ",
       invited_count: 120,
       year: 2020,
       month: 5,
@@ -273,29 +273,14 @@ var event_data = {
       cancelled: true,
     },
     {
-      occasion: " Repeated Test Event ",
+      occasion: " Repeated Test meal ",
       invited_count: 120,
       year: 2020,
       month: 5,
       day: 10,
     },
     {
-      occasion: " Repeated Test Event ",
-      invited_count: 120,
-      year: 2020,
-      month: 5,
-      day: 10,
-      cancelled: true,
-    },
-    {
-      occasion: " Repeated Test Event ",
-      invited_count: 120,
-      year: 2020,
-      month: 5,
-      day: 10,
-    },
-    {
-      occasion: " Repeated Test Event ",
+      occasion: " Repeated Test meal ",
       invited_count: 120,
       year: 2020,
       month: 5,
@@ -303,14 +288,29 @@ var event_data = {
       cancelled: true,
     },
     {
-      occasion: " Repeated Test Event ",
+      occasion: " Repeated Test meal ",
       invited_count: 120,
       year: 2020,
       month: 5,
       day: 10,
     },
     {
-      occasion: " Test Event",
+      occasion: " Repeated Test meal ",
+      invited_count: 120,
+      year: 2020,
+      month: 5,
+      day: 10,
+      cancelled: true,
+    },
+    {
+      occasion: " Repeated Test meal ",
+      invited_count: 120,
+      year: 2020,
+      month: 5,
+      day: 10,
+    },
+    {
+      occasion: " Test meal",
       invited_count: 120,
       year: 2020,
       month: 5,
