@@ -13,7 +13,7 @@ function getRecipe(searchValue) {
     .then((recipes) => showRecipes(recipes.results));
 
   showRecipes = (recipes) => {
-    console.log(recipes);
+    //console.log(recipes);
     const recipesDiv = document.querySelector("#recipe-container");
 
     recipes.forEach((recipe) => {
