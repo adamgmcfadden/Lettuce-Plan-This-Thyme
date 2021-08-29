@@ -24,11 +24,11 @@ Recipes.init(
       allowNull: false,
     },
     servings: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     cook_time: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     user_id: {

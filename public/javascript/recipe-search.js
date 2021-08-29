@@ -80,12 +80,14 @@ function getRecipe(searchValue) {
     $(".addFav").on("click", function () {
       let title = $(this).siblings(".title").text();
       let nutrition = $(this).siblings(".recipeCals").text();
-      let servings = $(this).siblings(".recipeServings").text();
+      let servingsa = $(this).siblings(".recipeServings").text();
+      let servings = parseInt(servingsa.split(":")[1].trim());
 
-      let cook_time = $(this).siblings(".recipeTime").text();
+      let cook_timea = $(this).siblings(".recipeTime").text();
+      let cook_time = parseInt(cook_timea.split(":")[1].trim());
       //   //let ingred = $(this).siblings(".ingredients").text();
       let summary = $(this).siblings(".recipeURL").attr("href");
-      let user_id = 1;
+
       //   //
       const response = fetch(`/api/recipes`, {
         method: "POST",
