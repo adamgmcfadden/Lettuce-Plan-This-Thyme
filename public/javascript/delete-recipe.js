@@ -1,8 +1,12 @@
 $(".delete-post-btn").on("click", function () {
-    // let id = $(this).siblings(".id").text();
+    let title = $(this).siblings(".title").text();
+    console.log(title)
 
-    const response = fetch(`/api/recipes`, {
-        method: 'DELETE'    
+    const response = fetch(`/api/recipes/${title}`, {
+        method: 'DELETE' 
     });
+
+    document.location.reload();
+
 });
 

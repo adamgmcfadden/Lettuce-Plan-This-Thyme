@@ -30,10 +30,10 @@ router.post("/", (req, res) => {
     });
 });
 
-router.delete('/', withAuth, (req, res) => {
+router.delete('/:title', withAuth, (req, res) => {
   Recipes.destroy({
     where: {
-      id: req.params.id
+      title: req.params.title
     }
   })
     .then(dbCommentData => {
