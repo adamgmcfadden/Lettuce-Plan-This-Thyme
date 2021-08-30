@@ -37,17 +37,17 @@ function getRecipe(searchValue) {
 
       const recipeCals = document.createElement("li");
       recipeCals.innerText = `Calories: ${recipe.nutrition.nutrients[0].amount} per serving`;
-      recipeCals.className = "recipeCals";
+      recipeCals.className = "list-group-item recipeCals";
       recipeCard.appendChild(recipeCals);
 
       const recipeServings = document.createElement("li");
       recipeServings.innerText = `Serves: ${recipe.servings}`;
-      recipeServings.className = "recipeServings";
+      recipeServings.className = "list-group-item recipeServings";
       recipeCard.appendChild(recipeServings);
 
       const recipeTime = document.createElement("li");
       recipeTime.innerText = `Ready in: ${recipe.readyInMinutes} minutes`;
-      recipeTime.className = "recipeTime";
+      recipeTime.className = "list-group-item recipeTime";
       recipeCard.appendChild(recipeTime);
 
       const ingredients = document.createElement("div");
