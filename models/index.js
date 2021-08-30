@@ -4,6 +4,13 @@ const Recipes = require("./Recipes");
 const Comment = require("./Comment");
 
 // create associations
+User.hasMany(Recipes, {
+  foreignKey: "user_id",
+});
+
+Recipes.belongsTo(User, {
+  foreignKey: "user_id",
+});
 User.hasMany(Comment, {
   foreignKey: "user_id",
 });
