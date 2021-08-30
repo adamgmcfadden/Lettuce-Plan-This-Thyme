@@ -15,6 +15,8 @@ router.get("/", (req, res) => {
       "nutrition",
       "servings",
       "cook_time",
+      // "ingredients",
+      "image",
     ],
     include: [
       {

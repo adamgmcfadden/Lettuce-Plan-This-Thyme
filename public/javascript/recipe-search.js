@@ -28,12 +28,9 @@ function getRecipe(searchValue) {
       recipeCard.appendChild(recipeTitle);
 
       const recipeImage = document.createElement("img");
+      recipeImage.className = "recipeImage";
       recipeImage.src = `${recipe.image}`;
       recipeCard.appendChild(recipeImage);
-
-      // const recipeSummary = document.createElement('span');
-      // recipeSummary.innertext = `${recipe.summary}`;
-      // recipeCard.appendChild(recipeSummary);
 
       const recipeCals = document.createElement("li");
       recipeCals.innerText = `Calories: ${recipe.nutrition.nutrients[0].amount} per serving`;
@@ -65,7 +62,7 @@ function getRecipe(searchValue) {
       recipeURL.className = "recipeURL";
       recipeURL.href = `${recipe.sourceUrl}`;
       recipeURL.target = `_blank`;
-      recipeURL.innerText = `Click her for recipe!`;
+      recipeURL.innerText = `Click here for recipe!`;
       recipeCard.appendChild(recipeURL);
 
       const faveBtn = document.createElement("button");
@@ -88,7 +85,9 @@ function getRecipe(searchValue) {
       let cook_time = parseInt(cook_timea.split(":")[1].trim());
       //   //let ingred = $(this).siblings(".ingredients").text();
       let summary = $(this).siblings(".recipeURL").attr("href");
-
+      // let image = $(this).siblings(".recipeImage").attr('src');
+      let image = $(this).siblings(".recipeImage").attr("src");
+      console.log(image);
       //   //
       const response = fetch(`/api/recipes`, {
         method: "POST",
@@ -98,6 +97,7 @@ function getRecipe(searchValue) {
           nutrition,
           servings,
           cook_time,
+          image,
         }),
         headers: {
           "Content-Type": "application/json",

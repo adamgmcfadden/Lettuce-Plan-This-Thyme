@@ -20,9 +20,29 @@ router.post("/", (req, res) => {
     servings: req.body.servings,
     cook_time: req.body.cook_time,
     user_id: req.session.user_id,
+    image: req.body.image,
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.delete('/', withAuth, (req, res) => {
+  Recipes.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbCommentData => {
+      if (!dbCommentData) {
+        res.status(404).json({ message: 'No recipe found with that title!' });
+        return;
+      }
+      res.json(dbCommentData);
+    })
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
