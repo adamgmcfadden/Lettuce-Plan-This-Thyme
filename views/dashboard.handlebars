@@ -7,12 +7,12 @@
     <h1>Dashboard</h1>
 
     <h2>Favorite Recipes</h2>
-{{#if recipies.length}}
+{{#if recipes.length}}
   <section>
-    <h2>Your recipies</h2>
     <ul>
-      {{#each recipies as |post|}}
-        <li>
+      {{#each recipes}}
+      {{> recipes/recipe-card }}
+        {{!-- <li>
           <article class="post">
             <div class="title">
               
@@ -25,7 +25,7 @@
           </ul>    
           </article>
           
-        </li>
+        </li> --}}
 
       {{/each}}
     </ul>

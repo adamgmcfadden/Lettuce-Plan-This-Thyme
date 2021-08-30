@@ -70,11 +70,12 @@ function getRecipe(searchValue) {
 
       const faveBtn = document.createElement("button");
       faveBtn.innerText = `Add to favorites`;
-      faveBtn.className = "addFav";
+      faveBtn.className = "addFav btn btn-outline-success";
       recipeCard.appendChild(faveBtn);
 
       const calendarBtn = document.createElement("button");
       calendarBtn.innerText = "Add to calendar";
+      calendarBtn.className = "addCal btn btn-outline-success";
       recipeCard.appendChild(calendarBtn);
     });
     $(".addFav").on("click", function () {

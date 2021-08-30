@@ -1,18 +1,22 @@
 
 {{!-- {{#each this}} --}}
 <div class="card" style="width: 18rem;">
-  <img src="{{image}}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{title}}</h5>
-    <p class="card-text">{{summary}}</p>
-  </div>
+  <h5 class="card-title">{{title}}</h5>
+  
+  {{!-- <div class="card-body"> --}}
+    <img src="{{image}}" class="card-img-top" alt="...">
+    {{!-- <p class="card-text">{{summary}}</p> --}}
+  {{!-- </div> --}}
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Nutrition: {{caloricBreakdown}}</li>
+    <li class="list-group-item">Nutrition: {{nutrition}}</li>
     <li class="list-group-item">Servings: {{servings}}</li>
-    <li class="list-group-item">Ready in: {{readyInMinutes}} minutes</li>
+    <li class="list-group-item">Ready in: {{cook_time}} minutes</li>
   </ul>
   <div class="card-body">
-    <a href="{{sourceUrl}}" class="card-link">Click Here for Recipe</a>
+    <a href="{{summary}}" class="card-link">Click Here for Recipe</a>
+  </div>
+  <div class="remove-recipe">
+    <button class="btn btn-outline-danger" type="button">Remove From Favorites</button>
   </div>
 </div>
 {{!-- {{/each}} --}}

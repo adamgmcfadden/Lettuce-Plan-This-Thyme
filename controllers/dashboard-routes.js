@@ -33,10 +33,10 @@ router.get("/", (req, res) => {
   })
     .then((dbRecipesData) => {
       // serialize data before passing to template
-      const recipies = dbRecipesData.map((recipe) =>
+      const recipes = dbRecipesData.map((recipe) =>
         recipe.get({ plain: true })
       );
-      res.render("dashboard", { style: "style.css", recipies, loggedIn: true });
+      res.render("dashboard", { style: "style.css", recipes, loggedIn: true });
     })
     .catch((err) => {
       console.log(err);
