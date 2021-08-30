@@ -4,7 +4,7 @@
 // const apiKey = "c0a5df971c94493aa3d688d219a0a28d"
 const url = "https://api.spoonacular.com/recipes/complexSearch?query=";
 const url2 =
-  "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey=c0a5df971c94493aa3d688d219a0a28d";
+  "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey=ca7027577b24470592ca8275b05b47b3";
 
 function getRecipe(searchValue) {
   // console.log(searchValue)
@@ -55,6 +55,7 @@ function getRecipe(searchValue) {
       for (i = 0; i < `${recipe.extendedIngredients.length}`; i++) {
         const recipeIngredients = document.createElement("span");
         recipeIngredients.innerText = `${recipe.extendedIngredients[i].name}, `;
+        recipeIngredients.className = "ingredientsLi"
         ingredients.appendChild(recipeIngredients);
       }
 
@@ -83,12 +84,12 @@ function getRecipe(searchValue) {
 
       let cook_timea = $(this).siblings(".recipeTime").text();
       let cook_time = parseInt(cook_timea.split(":")[1].trim());
-      //   //let ingred = $(this).siblings(".ingredients").text();
+      let ingred = $(this).siblings(".ingredients").children(".ingredientsLi").text();
       let summary = $(this).siblings(".recipeURL").attr("href");
-      // let image = $(this).siblings(".recipeImage").attr('src');
       let image = $(this).siblings(".recipeImage").attr("src");
-      console.log(image);
-      //   //
+      
+      console.log(ingred);
+      
       const response = fetch(`/api/recipes`, {
         method: "POST",
         body: JSON.stringify({
@@ -98,6 +99,7 @@ function getRecipe(searchValue) {
           servings,
           cook_time,
           image,
+          ingred,
         }),
         headers: {
           "Content-Type": "application/json",

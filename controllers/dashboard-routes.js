@@ -15,6 +15,7 @@ router.get("/", (req, res) => {
       "nutrition",
       "servings",
       "cook_time",
+      "ingred",
       // "ingredients",
       "image",
     ],

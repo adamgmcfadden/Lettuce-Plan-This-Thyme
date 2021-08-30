@@ -33,6 +33,10 @@ Recipes.init(
     },
     image: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    ingred: {
+      type: DataTypes.STRING,
       allowNull: false
     },
     user_id: {

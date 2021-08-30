@@ -21,6 +21,7 @@ router.post("/", (req, res) => {
     cook_time: req.body.cook_time,
     user_id: req.session.user_id,
     image: req.body.image,
+    ingred: req.body.ingred,
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {
