@@ -16,7 +16,7 @@ Recipes.init(
       allowNull: false,
     },
     summary: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     nutrition: {
@@ -30,6 +30,13 @@ Recipes.init(
     cook_time: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+      },
     },
   },
   {

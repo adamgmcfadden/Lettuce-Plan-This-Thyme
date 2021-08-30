@@ -1,22 +1,37 @@
 <div class="container hero">
-    <h1>Plan, Cook, Eat!</h1>
-    <p>Let's take the guesswork out of mealtime! Search our site for recipes that fit your tastes and dietary needs.</p>
-    <form class="d-flex search-form">
-        <input class="form-control me-2 search-bar" type="search" placeholder="Search Recipes" aria-label="Search">
-        <button class="btn btn-outline-success search-btn" type="submit">Search</button>
-    </form>
+  <h1>Plan, Cook, Eat!</h1>
+  <p>Let's take the guesswork out of mealtime! Search our site for recipes that
+    fit your tastes and dietary needs.<br />
+    <a href="/signup">Sign up </a>to enjoy our meal scheduler and receive daily
+    reminders for recipes and ingredients!</p>
+  <form class="d-flex search-form">
+    <input
+      class="form-control me-2 search-bar"
+      type="search"
+      placeholder="Search Recipes"
+      aria-label="Search"
+    />
+    <button
+      class="btn btn-outline-success search-btn"
+      type="submit"
+    >Search</button>
+  </form>
 </div>
-{{!-- <div class="container">
-    {{#if data}}
-    {{#each this}}
-    {{> recipes/recipe-card data}}
+
+<div class="container">
+  <div id="recipe-container" class="row justify-content-around">
+    {{!-- {{#if data}}
+    {{#each recipe}}
+    {{> recipes/recipe-card}}
     {{/each}}
-    {{/if}}
-</div> --}}
-<br>
+    {{/if}} --}}
+  </div>
+</div>
+{{! <br>
 <div class="container hero">
     <h2>Let's Make a Plan</h1>
     <p>Sign-up to enjoy our meal scheduler and receive daily reminders for recipes and ingredients!</p>
     <a href="/signup">Sign up now</a>
-</div>
-<script src='/javascript/recipe-search.js'></script>
+</div> }}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/javascript/recipe-search.js"></script>
