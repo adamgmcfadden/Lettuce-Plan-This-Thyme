@@ -1,4 +1,4 @@
-# project2-mealPlanner-tempName
+# Lettuce-Plan-This-Thyme
 
 ## Project Description
 
