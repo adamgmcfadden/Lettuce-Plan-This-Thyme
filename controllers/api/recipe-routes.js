@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", withAuth, (req, res) => {
   Recipes.create({
     title: req.body.title,
     summary: req.body.summary,
