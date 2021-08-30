@@ -22,3 +22,6 @@ Recipes.hasMany(Comment, {
   foreignKey: "comment_id",
   onDelete: "SET NULL",
 });
+
+// Export the modules
+module.exports = { User, Recipe, Comment };
