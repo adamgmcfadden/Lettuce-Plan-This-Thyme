@@ -15,13 +15,13 @@ function getRecipe(searchValue) {
   showRecipes = (recipes) => {
     //  console.log(recipes);
     const recipesDiv = document.querySelector("#dash-recipe-container");
-    const titleDiv = document.querySelector(".dashboard-title")
+    const backDiv = document.querySelector(".backDiv")
 
     const backDash = document.createElement("a");
     backDash.className = "backA btn btn-outline-success";
     backDash.href = `/dashboard`;
     backDash.innerText = `Back to Favorite Recipes`
-    titleDiv.append(backDash);
+    backDiv.append(backDash);
 
 
     recipes.forEach((recipe) => {
@@ -126,6 +126,7 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
     document.querySelector(".fav-container").style.display = "none";
+    document.querySelector(".backDiv").innerHTML = "";
     document.querySelector("#dash-recipe-container").innerHTML = "";
     const searchValue = document.querySelector(".search-bar").value.trim();
     getRecipe(searchValue);
