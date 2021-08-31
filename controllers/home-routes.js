@@ -4,7 +4,10 @@ const fetch = require("node-fetch");
 const { response } = require("express");
 
 router.get("/", (req, res) => {
-  res.render("home", { style: "style.css" });
+  res.render("home", {
+    style: "style.css",
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 router.get("/signup", (req, res) => {
