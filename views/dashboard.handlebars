@@ -3,35 +3,22 @@
         <input class="form-control me-2" type="search" placeholder="Search Recipes" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
+  </div>
 
+<div class="dashboard-title">
     <h1>Dashboard</h1>
-
-    <h2>Favorite Recipes</h2>
-{{#if recipies.length}}
-  <section>
-    <h2>Your recipies</h2>
-    <ul>
-      {{#each recipies as |post|}}
-        <li>
-          <article class="post">
-            <div class="title">
-              
-                <h2>{{title}}</h2>
-          <ul>
-            <li>link {{summary}}</li>
-            <li>cooks in {{cook_time}} minutes</li>
-            <li>serves: {{servings}}</li>
-            <li>{{nutrition}}</li>
-          </ul>    
-          </article>
-          
-        </li>
-
-      {{/each}}
-    </ul>
-  </section>
-{{/if}}
-
-    <h2> Link to calendar</h2>
-
 </div>
+
+<div class="container">
+  <h2>Favorite Recipes</h2>
+  <div id="recipe-container" class="row justify-content-around">
+{{#if recipes.length}}
+{{#each recipes}}
+{{> recipes/recipe-card }}
+{{/each}}
+{{/if}}
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/javascript/delete-recipe.js"></script>

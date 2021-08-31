@@ -4,7 +4,7 @@
 // const apiKey = "c0a5df971c94493aa3d688d219a0a28d"
 const url = "https://api.spoonacular.com/recipes/complexSearch?query=";
 const url2 =
-  "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey=c0a5df971c94493aa3d688d219a0a28d";
+  "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey=ca7027577b24470592ca8275b05b47b3";
 
 function getRecipe(searchValue) {
   // console.log(searchValue)
@@ -28,26 +28,23 @@ function getRecipe(searchValue) {
       recipeCard.appendChild(recipeTitle);
 
       const recipeImage = document.createElement("img");
+      recipeImage.className = "recipeImage";
       recipeImage.src = `${recipe.image}`;
       recipeCard.appendChild(recipeImage);
 
-      // const recipeSummary = document.createElement('span');
-      // recipeSummary.innertext = `${recipe.summary}`;
-      // recipeCard.appendChild(recipeSummary);
-
       const recipeCals = document.createElement("li");
       recipeCals.innerText = `Calories: ${recipe.nutrition.nutrients[0].amount} per serving`;
-      recipeCals.className = "recipeCals";
+      recipeCals.className = "list-group-item recipeCals";
       recipeCard.appendChild(recipeCals);
 
       const recipeServings = document.createElement("li");
       recipeServings.innerText = `Serves: ${recipe.servings}`;
-      recipeServings.className = "recipeServings";
+      recipeServings.className = "list-group-item recipeServings";
       recipeCard.appendChild(recipeServings);
 
       const recipeTime = document.createElement("li");
       recipeTime.innerText = `Ready in: ${recipe.readyInMinutes} minutes`;
-      recipeTime.className = "recipeTime";
+      recipeTime.className = "list-group-item recipeTime";
       recipeCard.appendChild(recipeTime);
 
       const ingredients = document.createElement("div");
@@ -58,6 +55,7 @@ function getRecipe(searchValue) {
       for (i = 0; i < `${recipe.extendedIngredients.length}`; i++) {
         const recipeIngredients = document.createElement("span");
         recipeIngredients.innerText = `${recipe.extendedIngredients[i].name}, `;
+        recipeIngredients.className = "ingredientsLi"
         ingredients.appendChild(recipeIngredients);
       }
 
@@ -65,16 +63,17 @@ function getRecipe(searchValue) {
       recipeURL.className = "recipeURL";
       recipeURL.href = `${recipe.sourceUrl}`;
       recipeURL.target = `_blank`;
-      recipeURL.innerText = `Click her for recipe!`;
+      recipeURL.innerText = `Click here for recipe!`;
       recipeCard.appendChild(recipeURL);
 
       const faveBtn = document.createElement("button");
       faveBtn.innerText = `Add to favorites`;
-      faveBtn.className = "addFav";
+      faveBtn.className = "addFav btn btn-outline-success";
       recipeCard.appendChild(faveBtn);
 
       const calendarBtn = document.createElement("button");
       calendarBtn.innerText = "Add to calendar";
+      calendarBtn.className = "addCal btn btn-outline-success";
       recipeCard.appendChild(calendarBtn);
     });
     $(".addFav").on("click", function () {
@@ -85,10 +84,12 @@ function getRecipe(searchValue) {
 
       let cook_timea = $(this).siblings(".recipeTime").text();
       let cook_time = parseInt(cook_timea.split(":")[1].trim());
-      //   //let ingred = $(this).siblings(".ingredients").text();
+      let ingred = $(this).siblings(".ingredients").children(".ingredientsLi").text();
       let summary = $(this).siblings(".recipeURL").attr("href");
-
-      //   //
+      let image = $(this).siblings(".recipeImage").attr("src");
+      
+      console.log(ingred);
+      
       const response = fetch(`/api/recipes`, {
         method: "POST",
         body: JSON.stringify({
@@ -97,6 +98,8 @@ function getRecipe(searchValue) {
           nutrition,
           servings,
           cook_time,
+          image,
+          ingred,
         }),
         headers: {
           "Content-Type": "application/json",
