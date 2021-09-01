@@ -1,5 +1,13 @@
 // Setup the calendar with the current date
 $(document).ready(function () {
+  const data = fetch("/calandar/all")
+    .then((res) => res.json())
+    .then((recipes) => {
+      const recipesData = recipes;
+      meal_data["meals"] = recipesData;
+      console.log(meal_data);
+    });
+
   var date = new Date();
   var today = date.getDate();
   // Set click handlers for DOM elements
@@ -174,7 +182,7 @@ function show_meals(meals, month, day) {
   // Clear the dates container
   $(".meals-container").empty();
   $(".meals-container").show(250);
-  console.log(meal_data["meals"]);
+  //console.log(meal_data["meals"]);
   // If there are no meals for this date, notify the user
   if (meals.length === 0) {
     var meal_card = $("<div class='meal-card'></div>");
@@ -193,13 +201,10 @@ function show_meals(meals, month, day) {
     for (var i = 0; i < meals.length; i++) {
       var meal_card = $("<div class='meal-card'></div>");
       var meal_name = $(
-        "<div class='meal-name'>" + meals[i]["occasion"] + ":</div>"
+        "<div class='meal-name'>" + meals[i]["meal"] + ":</div>"
       );
       var meal_count = $(
-        "<div class='meal-count'>" +
-          " Meal: " +
-          meals[i]["invited_count"] +
-          ":</div>"
+        "<div class='meal-count'>" + " Meal: " + meals[i]["title"] + ":</div>"
       );
       if (meals[i]["cancelled"] === true) {
         $(meal_card).css({
@@ -233,90 +238,7 @@ function check_meals(day, month, year) {
 
 // Given data for meals in JSON format
 var meal_data = {
-  meals: [
-    {
-      occasion: " Repeated Test meal ",
-      invited_count: 120,
-      year: 2020,
-      month: 5,
-      day: 10,
-      cancelled: true,
-    },
-    {
-      occasion: " breakfast , porridge",
-      invited_count: 120,
-      year: 2021,
-      month: 8,
-      day: 11,
-    },
-    {
-      occasion: " Repeated Test meal ",
-      invited_count: 120,
-      year: 2020,
-      month: 5,
-      day: 10,
-      cancelled: true,
-    },
-    {
-      occasion: " Repeated Test meal ",
-      invited_count: 120,
-      year: 2021,
-      month: 8,
-      day: 10,
-    },
-    {
-      occasion: " Repeated Test meal ",
-      invited_count: 120,
-      year: 2020,
-      month: 5,
-      day: 10,
-      cancelled: true,
-    },
-    {
-      occasion: " Repeated Test meal ",
-      invited_count: 120,
-      year: 2020,
-      month: 5,
-      day: 10,
-    },
-    {
-      occasion: " Repeated Test meal ",
-      invited_count: 120,
-      year: 2020,
-      month: 5,
-      day: 10,
-      cancelled: true,
-    },
-    {
-      occasion: " Repeated Test meal ",
-      invited_count: 120,
-      year: 2020,
-      month: 5,
-      day: 10,
-    },
-    {
-      occasion: " Repeated Test meal ",
-      invited_count: 120,
-      year: 2020,
-      month: 5,
-      day: 10,
-      cancelled: true,
-    },
-    {
-      occasion: " Repeated Test meal ",
-      invited_count: 120,
-      year: 2020,
-      month: 5,
-      day: 10,
-    },
-    {
-      occasion: " Test meal",
-      invited_count: 120,
-      year: 2020,
-      month: 5,
-      day: 11,
-    },
-  ],
+  meals: [],
 };
 
 const months = [
