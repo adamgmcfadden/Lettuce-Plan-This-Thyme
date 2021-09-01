@@ -4,7 +4,7 @@
 // const apiKey = "c0a5df971c94493aa3d688d219a0a28d"
 const url = "https://api.spoonacular.com/recipes/complexSearch?query=";
 const url2 =
-  "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey=ca7027577b24470592ca8275b05b47b3";
+  "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey=c0a5df971c94493aa3d688d219a0a28d";
 
 function getRecipe(searchValue) {
   // console.log(searchValue)
@@ -14,12 +14,15 @@ function getRecipe(searchValue) {
 
   showRecipes = (recipes) => {
     //  console.log(recipes);
+
     const recipesDiv = document.querySelector("#recipe-container");
 
     recipes.forEach((recipe) => {
+      let z = `${recipe.title}`;
+      let id = z.split(" ").join("");
       const recipeCard = document.createElement("div");
       recipeCard.className = `card recipe-card col-5 `;
-      recipeCard.id = recipe;
+
       recipesDiv.append(recipeCard);
 
       const recipeTitle = document.createElement("h5");
@@ -78,20 +81,22 @@ function getRecipe(searchValue) {
 
       const calendarInfo = document.createElement("div");
       calendarInfo.className = "calInfo";
+      calendarInfo.id = `calInfo${id}`;
       calendarInfo.innerHTML = `
       <p> Meal type 
-        <select name="meal" class="meal">
+        <select name="meal" id="meal${id}">
           <option value="breakfast">breakfast</option>
           <option value="lunch">lunch</option>
           <option value="dinner">dinner</option>
           <option value="dessert">dessert</option>
         </select>
       </p>
-      <p>Date: <input type="text" class="datepicker" /></p>
+      <p>Date: <input type="text" id="datepicker${id}" /></p>
       <button class="date">Select</button>
       `;
       calendarInfo.style.display = "none";
       recipeCard.appendChild(calendarInfo);
+      console.log("z " + id);
     });
     $(".addFav").on("click", function () {
       let title = $(this).siblings(".title").text();
@@ -129,20 +134,25 @@ function getRecipe(searchValue) {
       //alert(title + " " + cals + " " + servings + " " + time + " " + url);
     });
     $(".addCal").on("click", function () {
-      console.log("hi");
-      $(".calInfo").show();
-    });
-    $(function () {
-      $(".datepicker").datepicker({
-        dateFormat: "dd-mm-yy",
+      let z = $(this).siblings(".title").text();
+      let id = z.split(" ").join("");
+      //console.log("hi");
+      $(`#calInfo${id}`).show();
+      $(function () {
+        $(`#datepicker${id}`).datepicker({
+          dateFormat: "dd-mm-yy",
+        });
       });
     });
+
     $(".date").on("click", function () {
-      let currentDate = $(".datepicker").datepicker("getDate");
+      let z = $(this).parent().siblings(".title").text();
+      let id = z.split(" ").join("");
+      let currentDate = $(`#datepicker${id}`).datepicker("getDate");
       let year = currentDate.getFullYear();
-      let month = currentDate.getMonth();
+      let month = currentDate.getMonth() + 1;
       let day = currentDate.getDate();
-      let meal = $(".meal").val();
+      let meal = $(`#meal${id}`).val();
       let summary = $(this).parent().siblings(".recipeURL").attr("href");
       let title = $(this).parent().siblings(".title").text();
       let cook_timea = $(this).parent().siblings(".recipeTime").text();
