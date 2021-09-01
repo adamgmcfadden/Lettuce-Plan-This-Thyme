@@ -55,7 +55,7 @@ function getRecipe(searchValue) {
       for (i = 0; i < `${recipe.extendedIngredients.length}`; i++) {
         const recipeIngredients = document.createElement("span");
         recipeIngredients.innerText = `${recipe.extendedIngredients[i].name}, `;
-        recipeIngredients.className = "ingredientsLi"
+        recipeIngredients.className = "ingredientsLi";
         ingredients.appendChild(recipeIngredients);
       }
 
@@ -75,6 +75,23 @@ function getRecipe(searchValue) {
       calendarBtn.innerText = "Add to calendar";
       calendarBtn.className = "addCal btn btn-outline-success";
       recipeCard.appendChild(calendarBtn);
+
+      const calendarInfo = document.createElement("div");
+      calendarInfo.className = "calInfo";
+      calendarInfo.innerHTML = `
+      <p> Meal type 
+        <select name="meal" class="meal">
+          <option value="breakfast">breakfast</option>
+          <option value="lunch">lunch</option>
+          <option value="dinner">dinner</option>
+          <option value="dessert">dessert</option>
+        </select>
+      </p>
+      <p>Date: <input type="text" class="datepicker" /></p>
+      <button class="date">Select</button>
+      `;
+      calendarInfo.style.display = "none";
+      recipeCard.appendChild(calendarInfo);
     });
     $(".addFav").on("click", function () {
       let title = $(this).siblings(".title").text();
@@ -84,12 +101,15 @@ function getRecipe(searchValue) {
 
       let cook_timea = $(this).siblings(".recipeTime").text();
       let cook_time = parseInt(cook_timea.split(":")[1].trim());
-      let ingred = $(this).siblings(".ingredients").children(".ingredientsLi").text();
+      let ingred = $(this)
+        .siblings(".ingredients")
+        .children(".ingredientsLi")
+        .text();
       let summary = $(this).siblings(".recipeURL").attr("href");
       let image = $(this).siblings(".recipeImage").attr("src");
-      
+
       console.log(ingred);
-      
+
       const response = fetch(`/api/recipes`, {
         method: "POST",
         body: JSON.stringify({
@@ -107,6 +127,42 @@ function getRecipe(searchValue) {
       });
 
       //alert(title + " " + cals + " " + servings + " " + time + " " + url);
+    });
+    $(".addCal").on("click", function () {
+      console.log("hi");
+      $(".calInfo").show();
+    });
+    $(function () {
+      $(".datepicker").datepicker({
+        dateFormat: "dd-mm-yy",
+      });
+    });
+    $(".date").on("click", function () {
+      let currentDate = $(".datepicker").datepicker("getDate");
+      let year = currentDate.getFullYear();
+      let month = currentDate.getMonth();
+      let day = currentDate.getDate();
+      let meal = $(".meal").val();
+      let summary = $(this).parent().siblings(".recipeURL").attr("href");
+      let title = $(this).parent().siblings(".title").text();
+      let cook_timea = $(this).parent().siblings(".recipeTime").text();
+      let cook_time = parseInt(cook_timea.split(":")[1].trim());
+
+      const response = fetch(`/calandar`, {
+        method: "POST",
+        body: JSON.stringify({
+          year,
+          month,
+          day,
+          meal,
+          title,
+          cook_time,
+          summary,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     });
   };
 }
