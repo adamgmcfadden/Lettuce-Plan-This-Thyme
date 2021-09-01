@@ -6,20 +6,19 @@ $(document).ready(function () {
       const recipesData = recipes;
       meal_data["meals"] = recipesData;
       console.log(meal_data);
+      var date = new Date();
+      var today = date.getDate();
+      // Set click handlers for DOM elements
+      $(".right-button").click({ date: date }, next_year);
+      $(".left-button").click({ date: date }, prev_year);
+      $(".month").click({ date: date }, month_click);
+      $("#add-button").click({ date: date }, new_meal);
+      // Set current month as active
+      $(".months-row").children().eq(date.getMonth()).addClass("active-month");
+      init_calendar(date);
+      var meals = check_meals(today, date.getMonth() + 1, date.getFullYear());
+      show_meals(meals, months[date.getMonth()], today);
     });
-
-  var date = new Date();
-  var today = date.getDate();
-  // Set click handlers for DOM elements
-  $(".right-button").click({ date: date }, next_year);
-  $(".left-button").click({ date: date }, prev_year);
-  $(".month").click({ date: date }, month_click);
-  $("#add-button").click({ date: date }, new_meal);
-  // Set current month as active
-  $(".months-row").children().eq(date.getMonth()).addClass("active-month");
-  init_calendar(date);
-  var meals = check_meals(today, date.getMonth() + 1, date.getFullYear());
-  show_meals(meals, months[date.getMonth()], today);
 });
 
 // Initialize the calendar by appending the HTML dates
