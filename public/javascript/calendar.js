@@ -1,6 +1,6 @@
 // Setup the calendar with the current date
 $(document).ready(function () {
-  const data = fetch("/calandar/all")
+  const data = fetch("/calendar/all")
     .then((res) => res.json())
     .then((recipes) => {
       const recipesData = recipes;
@@ -226,7 +226,7 @@ function show_meals(meals, month, day) {
     let title = temp.split(":")[1].trim();
     console.log(title);
 
-    const response = fetch(`/calandar/${title}`, {
+    const response = fetch(`/calendar/${title}`, {
       method: "DELETE",
     });
 

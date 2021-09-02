@@ -4,7 +4,7 @@ const withAuth = require("../utils/auth");
 const Calendar = require("../models/Calendar");
 
 router.get("/", withAuth, (req, res) => {
-  res.render("calandar", { style: "calandar.css" });
+  res.render("calendar", { style: "calendar.css" });
 });
 router.get("/all", (req, res) => {
   Calendar.findAll({
@@ -48,7 +48,7 @@ router.post("/", (req, res) => {
 
     user_id: req.session.user_id,
   })
-    .then((dbPostData) => res.render("calandar", { data: req.body }))
+    .then((dbPostData) => res.render("calendar", { data: req.body }))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
