@@ -2,6 +2,7 @@
 const User = require("./User");
 const Recipes = require("./Recipes");
 const Comment = require("./Comment");
+const Calander = require("./Calendar");
 
 // create associations
 User.hasMany(Recipes, {
@@ -28,5 +29,13 @@ Comment.belongsTo(Recipes, {
 Recipes.hasMany(Comment, {
   foreignKey: "comment_id",
   onDelete: "SET NULL",
+});
+Calander.belongsTo(User, {
+  foreignKey: "user_id",
+  onDelete: "SET NULL",
+});
+User.hasMany(Calander, {
+  foreignKey: "user_id",
+  onDelete: "SET Null",
 });
 module.exports = { User, Recipes, Comment };

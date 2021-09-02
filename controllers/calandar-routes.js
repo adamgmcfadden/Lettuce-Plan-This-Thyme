@@ -2,6 +2,7 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 const withAuth = require("../utils/auth");
 const Calendar = require("../models/Calendar");
+
 router.get("/", withAuth, (req, res) => {
   res.render("calandar", { style: "calandar.css" });
 });
@@ -48,6 +49,24 @@ router.post("/", (req, res) => {
     user_id: req.session.user_id,
   })
     .then((dbPostData) => res.render("calandar", { data: req.body }))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+router.delete("/:title", (req, res) => {
+  Calendar.destroy({
+    where: {
+      title: req.params.title,
+      user_id: req.session.user_id,
+    },
+  })
+    .then((dbCommentData) => {
+      if (!dbCommentData) {
+        res.status(404).json({ message: "No recipe found with that title!" });
+        return;
+      }
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
