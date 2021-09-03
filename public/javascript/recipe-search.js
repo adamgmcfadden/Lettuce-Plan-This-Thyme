@@ -99,7 +99,7 @@ function getRecipe(searchValue) {
       `;
       calendarInfo.style.display = "none";
       recipeCard.appendChild(calendarInfo);
-      console.log("z " + id);
+      //console.log("z " + id);
     });
     $(".addFav").on("click", function () {
       let title = $(this).siblings(".title").text();
