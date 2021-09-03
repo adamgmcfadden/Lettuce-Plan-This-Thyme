@@ -1,17 +1,61 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
+#title {
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+  color: rgb(1, 104, 1);
+}
+.navbar-nav {
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+nav {
+  margin-bottom: 50px;
+  background-color: rgb(243, 238, 207);
+  background-image: linear-gradient(
+    135deg,
+    rgb(243, 227, 207) 25%,
+    #048a2c 75%
+  );
+}
 .hero {
-    text-align: center;
+  text-align: center;
 }
 
 .recipe-card {
-    margin: 20px 0px;
+  margin: 20px 0px;
 }
 
 .sign-up-form h2,
 .login-form h2 {
-    text-align: center;
+  text-align: center;
 }
 
+/* Dashboard main styling */
+.title-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+/* Dashboard title styling */
+.dash-title {
+  width: 40%;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+  color: rgb(1, 104, 1);
+  border-bottom: solid 1px rgb(95, 95, 95);
+}
+
+#fav-title {
+  color: rgb(95, 95, 95);
+  margin: 40px 0 20px 0;
+  text-align: center;
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+}
