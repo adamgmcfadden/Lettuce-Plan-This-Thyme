@@ -84,6 +84,9 @@ nav {
 /* home parent element styling */
 .home-el {
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 50px;
+  border-radius: 5px;
 }
 
 #home-title {
@@ -92,6 +95,9 @@ nav {
   font-weight: bold;
 }
 
+.hero-image {
+  background-image: url(../images/jumbo.jpeg);
+}
 /* ------------------------------------------
 ---------- HOMEPAGE STYLING ENDS ----------
 ------------------------------------------ */
