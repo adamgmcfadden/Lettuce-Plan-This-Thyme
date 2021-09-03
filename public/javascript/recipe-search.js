@@ -158,7 +158,7 @@ function getRecipe(searchValue) {
       let cook_timea = $(this).parent().siblings(".recipeTime").text();
       let cook_time = parseInt(cook_timea.split(":")[1].trim());
 
-      const response = fetch(`/calandar`, {
+      const response = fetch(`/calendar`, {
         method: "POST",
         body: JSON.stringify({
           year,
