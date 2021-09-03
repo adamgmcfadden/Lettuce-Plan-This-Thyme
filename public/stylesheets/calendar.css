@@ -1,6 +1,41 @@
-.ftco-section {
-  padding: 7em 0;
+/*------------------------------------- 
+------- NAVBAR STYLING STARTS ---------- 
+--------------------------------------*/
+
+/* header title - Lettuce Plan This Thyme */
+#title {
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+  color: rgb(1, 104, 1);
 }
+
+/* header styling */
+nav {
+  margin-bottom: 50px;
+  background-color: rgb(243, 238, 207);
+  background-image: linear-gradient(
+    135deg,
+    rgb(243, 227, 207) 25%,
+    #048a2c 75%
+  );
+}
+
+/* Navbar button styling */
+.navbar-nav {
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+/* favicon - lettuce img styling */
+.fav-icon {
+  height: 60px;
+  width: auto;
+  border-radius: 15px;
+}
+
+/*------------------------------------- 
+-------- NAVBAR STYLING ENDS ---------- 
+--------------------------------------*/
 
 .ftco-no-pt {
   padding-top: 0;
@@ -10,6 +45,7 @@
   padding-bottom: 0;
 }
 
+/* main calendar content */
 .content {
   overflow: none;
   width: 100%;
@@ -18,7 +54,9 @@
   height: 500px;
   position: relative;
   margin: 20px auto;
-  background: #7e0cf5;
+  background-image: url(../images/jumbo.jpeg);
+  background-size: cover;
+  border: solid 0.5px green;
 }
 
 /*  meals display */
@@ -49,10 +87,9 @@
   padding: 20px 0;
   max-width: 100%;
   display: block;
-  background: #fff;
+  background: rgb(243, 245, 232);
   border: none !important;
   margin: 20px;
-  margin-left: 12px;
 }
 @media (max-width: 991.98px) {
   .meal-card {
@@ -74,7 +111,7 @@
 }
 
 .meal-count {
-  color: #7e0cf5;
+  color: #ffc400;
   text-align: right;
 }
 
@@ -84,7 +121,7 @@
 }
 
 .meal-cancelled {
-  color: #cd4dcc;
+  color: #048a2c;
   text-align: right;
 }
 
@@ -94,7 +131,7 @@
   margin: 0 auto;
   height: 100%;
   width: 50%;
-  background: #fff;
+  background: rgba(243, 227, 207, 0.95);
   font: 13px Helvetica, Arial, san-serif;
   display: inline-block;
   padding: 20px;
@@ -123,7 +160,7 @@
 
 /* Calendar Header */
 .year-header {
-  background: #fff;
+  background: rgb(243, 245, 232);
   height: 40px;
   text-align: center;
   position: relative;
@@ -145,7 +182,7 @@
   width: 28px;
   text-align: center;
   position: absolute;
-  color: #cccccc !important;
+  color: #e02121 !important;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
@@ -161,7 +198,7 @@
 }
 .left-button:hover,
 .right-button:hover {
-  color: #7e0cf5 !important;
+  color: #ffc400 !important;
 }
 
 .left-button {
@@ -188,10 +225,10 @@
   transition: 0.2s ease all;
   color: white;
   border: none;
-  background: #7e0cf5;
+  background: #048a2c;
 }
 .button.button-white {
-  background: #fff;
+  background: rgba(243, 227, 207, 0.95);
   color: #000;
 }
 .button:focus {
@@ -201,7 +238,7 @@
 }
 
 #cancel-button {
-  background: #cd4dcc;
+  background: #048a2c;
 }
 
 #add-button {
@@ -255,7 +292,7 @@
   line-height: 26px;
   text-transform: uppercase;
   font-size: 11px;
-  color: #cccccc;
+  color: #757575;
   -webkit-transition: all 250ms;
   -o-transition: all 250ms;
   transition: all 250ms;
@@ -277,7 +314,7 @@
 }
 
 .month:hover {
-  color: #cd4dcc;
+  color: #048a2c;
 }
 
 /*  Dates table */
@@ -299,12 +336,12 @@
 }
 
 .table-date:not(.nil):hover {
-  border-color: #cd4dcc;
+  border-color: #048a2c;
 }
 
 .meal-date {
-  border-color: #7e0cf5;
-  background: #7e0cf5;
+  border-color: #ffc400;
+  background: #ffc400;
   color: #fff;
 }
 .meal-date:after {
@@ -315,22 +352,24 @@
   height: 10px;
   border-radius: 50%;
   content: "";
-  background: #28a745;
+  background: rgb(161, 0, 27);
 }
 
 .active-date {
-  background: #cd4dcc;
+  background: #048a2c;
   color: #fff;
 }
 
 .meal-date.active-date {
-  background: #7e0cf5;
+  background: #ffc400;
 }
 
-/* input dialog */
+/* ---------------------------------------------
+--styling of dialog - once you press "Add Meal-- 
+-----------------------------------------------*/
 .dialog {
   z-index: 5;
-  background: #000;
+  background: rgb(1, 104, 1, 0.35);
   position: absolute;
   width: 50%;
   height: 500px;
@@ -383,5 +422,5 @@
 }
 
 .error-input {
-  border-color: #cd4dcc;
+  border-color: #048a2c;
 }
