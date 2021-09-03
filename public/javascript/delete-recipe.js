@@ -48,4 +48,5 @@ $(".date").on("click", function () {
       "Content-Type": "application/json",
     },
   });
+  $(`#calInfo${id}`).hide();
 });
