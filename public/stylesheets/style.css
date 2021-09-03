@@ -31,6 +31,13 @@ nav {
   font-size: 18px;
 }
 
+/* favicon - lettuce img styling */
+.fav-icon {
+  height: 60px;
+  width: auto;
+  border-radius: 15px;
+}
+
 /* -------- RECIPE CARD STYLING ---------- */
 .recipe-card {
   margin: 20px 0px;
@@ -95,20 +102,14 @@ nav {
 
 /* Dashboard main styling */
 .title-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 /* Dashboard title styling */
 .dash-title {
-  width: 40%;
-  padding: 10px;
   margin-bottom: 10px;
-  text-align: center;
   font-family: "Merriweather", serif;
   font-weight: bold;
   color: rgb(1, 104, 1);
-  border-bottom: solid 1px rgb(95, 95, 95);
 }
 
 #fav-title {
