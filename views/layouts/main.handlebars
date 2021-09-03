@@ -1,51 +1,74 @@
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Lettuce Plan This Thyme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="/stylesheets/{{style}}" />
-   <link
+    <link
       rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/"">Lettuce Plan<br>This Thyme</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link" href="/">Home</a>
-            <a class="nav-link" href="/dashboard">Dashboard</a>
-            {{#if loggedIn}}
-              <a class="nav-link nav-logout" id="logout" href="#">Logout</a>
-            {{else}}
-              <a class="nav-link nav-login" href="/login">Login</a>
-            {{/if}}
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <h1 class="navbar-brand" id="title">Lettuce Plan<br />This Thyme</h1>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link" href="/dashboard">Dashboard</a>
+              {{#if loggedIn}}
+                <a class="nav-link nav-logout" id="logout" href="#">Logout</a>
+              {{else}}
+                <a class="nav-link nav-login" href="/login">Login</a>
+              {{/if}}
+
+            </div>
+
           </div>
         </div>
-      </div>
-    </nav>
+        <div>
+          <img
+            class="fav-icon"
+            src="/images/lettuce.jpg"
+            alt="image of a head of lettuce"
+          />
+        </div>
+      </nav>
+    </header>
 
     {{{body}}}
-    {{!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --}}
+
+    {{! <img
+      src="/images/jumbo.jpg"
+      alt="cooking ingredients displayed with a meal schedule"
+    /> }}
+
+    {{! <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> }}
     {{#if loggedIn}}
       <script src="/javascript/logout.js"></script>
     {{/if}}

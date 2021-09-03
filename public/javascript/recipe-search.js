@@ -15,6 +15,9 @@ function getRecipe(searchValue) {
   showRecipes = (recipes) => {
     //  console.log(recipes);
 
+    const heroImage = document.querySelector(".hero-image");
+    heroImage.style.background = "none";
+
     const recipesDiv = document.querySelector("#recipe-container");
 
     recipes.forEach((recipe) => {
