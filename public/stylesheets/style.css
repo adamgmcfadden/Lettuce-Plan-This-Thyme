@@ -31,6 +31,13 @@ nav {
   font-size: 18px;
 }
 
+/* favicon - lettuce img styling */
+.fav-icon {
+  height: 60px;
+  width: auto;
+  border-radius: 15px;
+}
+
 /* -------- RECIPE CARD STYLING ---------- */
 .recipe-card {
   margin: 20px 0px;
@@ -44,7 +51,14 @@ nav {
 -------  SIGNUP/LOGIN STYLING BEGINS  -------
 ------------------------------------------ */
 
-/* SIGNUP FORM/LOGIN FORM PARENT STYLING */
+/* login form - container styling */
+.login-form,
+.sign-up-form {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 50px;
+  border-radius: 5px;
+}
+/* SIGNUP FORM/LOGIN FORM title */
 .sign-up-form h2,
 .login-form h2 {
   text-align: center;
@@ -57,13 +71,13 @@ nav {
 }
 
 .login-signup-btn {
-  background-color: rgb(95, 95, 95);
+  background-color: #048a2c;
   border: none;
 }
 
 .login-signup-btn:hover {
-  background-color: rgb(1, 104, 1);
-  border: none;
+  background-color: #048a2c;
+  font-weight: bold;
 }
 
 /* ------------------------------------------
@@ -77,6 +91,9 @@ nav {
 /* home parent element styling */
 .home-el {
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 50px;
+  border-radius: 5px;
 }
 
 #home-title {
@@ -85,6 +102,9 @@ nav {
   font-weight: bold;
 }
 
+.hero-image {
+  background-image: url(../images/jumbo.jpeg);
+}
 /* ------------------------------------------
 ---------- HOMEPAGE STYLING ENDS ----------
 ------------------------------------------ */
@@ -95,20 +115,14 @@ nav {
 
 /* Dashboard main styling */
 .title-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 /* Dashboard title styling */
 .dash-title {
-  width: 40%;
-  padding: 10px;
   margin-bottom: 10px;
-  text-align: center;
   font-family: "Merriweather", serif;
   font-weight: bold;
   color: rgb(1, 104, 1);
-  border-bottom: solid 1px rgb(95, 95, 95);
 }
 
 #fav-title {
