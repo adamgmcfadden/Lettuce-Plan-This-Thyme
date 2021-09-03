@@ -4,7 +4,7 @@ const withAuth = require("../utils/auth");
 const Calendar = require("../models/Calendar");
 
 router.get("/", withAuth, (req, res) => {
-  res.render("calendar", { style: "calendar.css" });
+  res.render("calendar", { style: "calendar.css", loggedIn: true });
 });
 router.get("/all", (req, res) => {
   Calendar.findAll({

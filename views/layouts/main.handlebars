@@ -41,6 +41,7 @@
             <div class="navbar-nav">
               <a class="nav-link" href="/">Home</a>
               <a class="nav-link" href="/dashboard">Dashboard</a>
+              <a class="nav-link" href="/calendar">Calendar</a>
               {{#if loggedIn}}
                 <a class="nav-link nav-logout" id="logout" href="#">Logout</a>
               {{else}}
@@ -63,12 +64,6 @@
 
     {{{body}}}
 
-    {{! <img
-      src="/images/jumbo.jpg"
-      alt="cooking ingredients displayed with a meal schedule"
-    /> }}
-
-    {{! <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> }}
     {{#if loggedIn}}
       <script src="/javascript/logout.js"></script>
     {{/if}}

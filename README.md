@@ -12,7 +12,7 @@ An application that assists its users in planning their meals by providing a var
 
 ![Language](https://img.shields.io/badge/HTML-green.svg "Language Badge")
 ![Language](https://img.shields.io/badge/CSS-blue.svg "Language Badge")
-![Language](https://img.shields.io/badge/JavaScript-green.svg "Language Badge")
+![Language](https://img.shields.io/badge/JavaScript-yellow.svg "Language Badge")
 
 ### NPM packages Used:
 
