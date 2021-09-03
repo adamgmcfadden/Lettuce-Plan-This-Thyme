@@ -14,17 +14,20 @@ function getRecipe(searchValue) {
 
   showRecipes = (recipes) => {
     //  console.log(recipes);
+
     const recipesDiv = document.querySelector("#dash-recipe-container");
-    const backDiv = document.querySelector(".backDiv")
+    const backDiv = document.querySelector(".backDiv");
 
     const backDash = document.createElement("a");
     backDash.className = "backA btn btn-outline-success";
     backDash.href = `/dashboard`;
-    backDash.innerText = `Back to Favorite Recipes`
+    backDash.innerText = `Back to Favorite Recipes`;
     backDiv.append(backDash);
 
-
     recipes.forEach((recipe) => {
+      let z = `${recipe.title}`;
+      let id = z.split(" ").join("");
+
       const recipeCard = document.createElement("div");
       recipeCard.className = `card recipe-card col-5 `;
       recipeCard.id = recipe;
@@ -63,7 +66,7 @@ function getRecipe(searchValue) {
       for (i = 0; i < `${recipe.extendedIngredients.length}`; i++) {
         const recipeIngredients = document.createElement("span");
         recipeIngredients.innerText = `${recipe.extendedIngredients[i].name}, `;
-        recipeIngredients.className = "ingredientsLi"
+        recipeIngredients.className = "ingredientsLi";
         ingredients.appendChild(recipeIngredients);
       }
 
@@ -83,6 +86,24 @@ function getRecipe(searchValue) {
       calendarBtn.innerText = "Add to calendar";
       calendarBtn.className = "addCal btn btn-outline-success";
       recipeCard.appendChild(calendarBtn);
+
+      const calendarInfo = document.createElement("div");
+      calendarInfo.className = "calInfo";
+      calendarInfo.id = `calInfo${id}`;
+      calendarInfo.innerHTML = `
+      <p> Meal type 
+        <select name="meal" id="meal${id}">
+          <option value="breakfast">breakfast</option>
+          <option value="lunch">lunch</option>
+          <option value="dinner">dinner</option>
+          <option value="dessert">dessert</option>
+        </select>
+      </p>
+      <p>Date: <input type="text" id="datepicker${id}" /></p>
+      <button class="date">Select</button>
+      `;
+      calendarInfo.style.display = "none";
+      recipeCard.appendChild(calendarInfo);
     });
     $(".addFav").on("click", function () {
       let title = $(this).siblings(".title").text();
@@ -92,12 +113,15 @@ function getRecipe(searchValue) {
 
       let cook_timea = $(this).siblings(".recipeTime").text();
       let cook_time = parseInt(cook_timea.split(":")[1].trim());
-      let ingred = $(this).siblings(".ingredients").children(".ingredientsLi").text();
+      let ingred = $(this)
+        .siblings(".ingredients")
+        .children(".ingredientsLi")
+        .text();
       let summary = $(this).siblings(".recipeURL").attr("href");
       let image = $(this).siblings(".recipeImage").attr("src");
-      
-    //   console.log(ingred);
-      
+
+      //   console.log(ingred);
+
       const response = fetch(`/api/recipes`, {
         method: "POST",
         body: JSON.stringify({
@@ -114,13 +138,51 @@ function getRecipe(searchValue) {
         },
       });
     });
+
+    $(".addCal").on("click", function () {
+      let z = $(this).siblings(".title").text();
+      let id = z.split(" ").join("");
+      //console.log("hi");
+      $(`#calInfo${id}`).show();
+      $(function () {
+        $(`#datepicker${id}`).datepicker({
+          dateFormat: "dd-mm-yy",
+        });
+      });
+    });
+
+    $(".date").on("click", function () {
+      let z = $(this).parent().siblings(".title").text();
+      let id = z.split(" ").join("");
+      let currentDate = $(`#datepicker${id}`).datepicker("getDate");
+      let year = currentDate.getFullYear();
+      let month = currentDate.getMonth() + 1;
+      let day = currentDate.getDate();
+      let meal = $(`#meal${id}`).val();
+      let summary = $(this).parent().siblings(".recipeURL").attr("href");
+      let title = $(this).parent().siblings(".title").text();
+      let cook_timea = $(this).parent().siblings(".recipeTime").text();
+      let cook_time = parseInt(cook_timea.split(":")[1].trim());
+
+      const response = fetch(`/calendar`, {
+        method: "POST",
+        body: JSON.stringify({
+          year,
+          month,
+          day,
+          meal,
+          title,
+          cook_time,
+          summary,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      $(`#calInfo${id}`).hide();
+    });
   };
 }
-
-// $(".backBtn").on("click", function () {
-//     document.location.replace("/dashboard");
-// });
-
 document
   .querySelector(".search-form")
   .addEventListener("submit", function (event) {

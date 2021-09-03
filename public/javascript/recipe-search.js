@@ -176,6 +176,7 @@ function getRecipe(searchValue) {
           "Content-Type": "application/json",
         },
       });
+      $(`#calInfo${id}`).hide();
     });
   };
 }
