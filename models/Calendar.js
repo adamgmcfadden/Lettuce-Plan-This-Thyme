@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Calander extends Model {}
+class Calendar extends Model {}
 
-Calander.init(
+Calendar.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -63,8 +63,8 @@ Calander.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "calandar",
+    modelName: "calendar",
   }
 );
 
-module.exports = Calander;
+module.exports = Calendar;
