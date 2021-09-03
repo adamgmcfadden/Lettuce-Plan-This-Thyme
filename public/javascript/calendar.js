@@ -1,11 +1,11 @@
 // Setup the calendar with the current date
 $(document).ready(function () {
-  const data = fetch("/calandar/all")
+  const data = fetch("/calendar/all")
     .then((res) => res.json())
     .then((recipes) => {
       const recipesData = recipes;
       meal_data["meals"] = recipesData;
-      console.log(meal_data);
+      //  console.log(meal_data);
       var date = new Date();
       var today = date.getDate();
       // Set click handlers for DOM elements
@@ -192,8 +192,10 @@ function show_meals(meals, month, day) {
         day +
         ".</div>"
     );
+
     $(meal_card).css({ "border-left": "10px solid #FF1744" });
     $(meal_card).append(meal_name);
+
     $(".meals-container").append(meal_card);
   } else {
     // Go through and add each meal as a card to the meals container
@@ -202,20 +204,34 @@ function show_meals(meals, month, day) {
       var meal_name = $(
         "<div class='meal-name'>" + meals[i]["meal"] + ":</div>"
       );
+      let meal_destroy = $("<button class='destroy'>delete</button>");
       var meal_count = $(
         "<div class='meal-count'>" + " Meal: " + meals[i]["title"] + ":</div>"
       );
+
       if (meals[i]["cancelled"] === true) {
         $(meal_card).css({
           "border-left": "10px solid #FF1744",
         });
         meal_count = $("<div class='meal-cancelled'>Cancelled</div>");
       }
-      console.log(meal_count);
-      $(meal_card).append(meal_count).append(meal_name);
+      // console.log(meal_count);
+      $(meal_card).append(meal_count).append(meal_name).append(meal_destroy);
       $(".meals-container").append(meal_card);
     }
   }
+  $(".destroy").on("click", function () {
+    //alert("hi");
+    let temp = $(".meal-count").text();
+    let title = temp.split(":")[1].trim();
+    console.log(title);
+
+    const response = fetch(`/calendar/${title}`, {
+      method: "DELETE",
+    });
+
+    document.location.reload();
+  });
 }
 
 // Checks if a specific date has any meals
@@ -229,7 +245,7 @@ function check_meals(day, month, year) {
       meal["year"] === year
     ) {
       meals.push(meal);
-      console.log("found");
+      //    console.log("found");
     }
   }
   return meals;
