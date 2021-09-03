@@ -51,7 +51,14 @@ nav {
 -------  SIGNUP/LOGIN STYLING BEGINS  -------
 ------------------------------------------ */
 
-/* SIGNUP FORM/LOGIN FORM PARENT STYLING */
+/* login form - container styling */
+.login-form,
+.sign-up-form {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 50px;
+  border-radius: 5px;
+}
+/* SIGNUP FORM/LOGIN FORM title */
 .sign-up-form h2,
 .login-form h2 {
   text-align: center;
@@ -64,13 +71,13 @@ nav {
 }
 
 .login-signup-btn {
-  background-color: rgb(95, 95, 95);
+  background-color: #048a2c;
   border: none;
 }
 
 .login-signup-btn:hover {
-  background-color: rgb(1, 104, 1);
-  border: none;
+  background-color: #048a2c;
+  font-weight: bold;
 }
 
 /* ------------------------------------------
