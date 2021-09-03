@@ -167,7 +167,15 @@ function new_meal(meal) {
 
 // Adds a json meal to meal_data
 function new_meal_json(name, time, type, date, day) {
-  var meal = {
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let cook_time = time;
+  let summary = "abc";
+  //let day = day;
+  let meal = type;
+  let title = name;
+
+  const newMeal = {
     meal: type,
     title: name,
     cook_time: time,
@@ -176,7 +184,22 @@ function new_meal_json(name, time, type, date, day) {
     day: day,
     summary: "abc",
   };
-  meal_data["meals"].push(meal);
+  const response = fetch(`/calendar`, {
+    method: "POST",
+    body: JSON.stringify({
+      year,
+      month,
+      day,
+      meal,
+      title,
+      cook_time,
+      summary,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  meal_data["meals"].push(newMeal);
 }
 
 // Display all meals of the selected date in card views
@@ -203,7 +226,8 @@ function show_meals(meals, month, day) {
   } else {
     // Go through and add each meal as a card to the meals container
     for (var i = 0; i < meals.length; i++) {
-      var meal_card = $(`<div class="card">
+      if (meals[i] !== "abc") {
+        var meal_card = $(`<div class="card">
       <h5 class="card-header">${meals[i]["meal"]}</h5>
       <div class="card-body">
         <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
@@ -212,7 +236,18 @@ function show_meals(meals, month, day) {
         <button class='btn btn-primary destroy'>delete</button>
         </div>
     </div>`);
-      $(".meals-container").append(meal_card);
+        $(".meals-container").append(meal_card);
+      } else {
+        var meal_card = $(`<div class="card">
+    <h5 class="card-header">${meals[i]["meal"]}</h5>
+    <div class="card-body">
+      <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
+      <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
+      
+      <button class='btn btn-primary destroy'>delete</button>
+      </div>
+  </div>`);
+      }
     }
   }
   $(".destroy").on("click", function () {
