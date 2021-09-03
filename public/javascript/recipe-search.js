@@ -185,4 +185,6 @@ document
     const searchValue = document.querySelector(".search-bar").value.trim();
     getRecipe(searchValue);
     document.querySelector(".search-bar").value = "";
+    const heroImage = document.querySelector(".hero-image");
+    heroImage.style.display = none;
   });
