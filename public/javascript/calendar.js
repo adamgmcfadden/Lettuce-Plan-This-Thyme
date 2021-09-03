@@ -200,30 +200,22 @@ function show_meals(meals, month, day) {
   } else {
     // Go through and add each meal as a card to the meals container
     for (var i = 0; i < meals.length; i++) {
-      var meal_card = $("<div class='meal-card'></div>");
-      var meal_name = $(
-        "<div class='meal-name'>" + meals[i]["meal"] + ":</div>"
-      );
-      let meal_destroy = $("<button class='destroy'>delete</button>");
-      var meal_count = $(
-        "<div class='meal-count'>" + " Meal: " + meals[i]["title"] + ":</div>"
-      );
-
-      if (meals[i]["cancelled"] === true) {
-        $(meal_card).css({
-          "border-left": "10px solid #FF1744",
-        });
-        meal_count = $("<div class='meal-cancelled'>Cancelled</div>");
-      }
-      // console.log(meal_count);
-      $(meal_card).append(meal_count).append(meal_name).append(meal_destroy);
+      var meal_card = $(`<div class="card">
+      <h5 class="card-header">${meals[i]["meal"]}</h5>
+      <div class="card-body">
+        <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
+        <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
+        <a href="${meals[i]["summary"]}" target="_blank" class="btn btn-primary">Click Here for Recipe</a>
+        <button class='btn btn-primary destroy'>delete</button>
+        </div>
+    </div>`);
       $(".meals-container").append(meal_card);
     }
   }
   $(".destroy").on("click", function () {
     //alert("hi");
-    let temp = $(".meal-count").text();
-    let title = temp.split(":")[1].trim();
+    let title = $(this).siblings(".card-title").text();
+    //let title = temp.split(":")[1].trim();
     console.log(title);
 
     const response = fetch(`/calendar/${title}`, {
