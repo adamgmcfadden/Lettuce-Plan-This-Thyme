@@ -1,17 +1,124 @@
+/* ------------------------------------------
+----------- GLOBAL STYLING BEGINS -----------
+------------------------------------------ */
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.hero {
-    text-align: center;
+/* ---------- NAVBAR STYLING ------------ */
+
+/* header title - Lettuce Plan This Thyme */
+#title {
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+  color: rgb(1, 104, 1);
 }
 
+/* header styling */
+nav {
+  margin-bottom: 50px;
+  background-color: rgb(243, 238, 207);
+  background-image: linear-gradient(
+    135deg,
+    rgb(243, 227, 207) 25%,
+    #048a2c 75%
+  );
+}
+
+/* Navbar button styling */
+.navbar-nav {
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+/* -------- RECIPE CARD STYLING ---------- */
 .recipe-card {
-    margin: 20px 0px;
+  margin: 20px 0px;
 }
 
+/* ------------------------------------------
+------------ GLOBAL STYLING ENDS -------------
+------------------------------------------ */
+
+/* ------------------------------------------
+-------  SIGNUP/LOGIN STYLING BEGINS  -------
+------------------------------------------ */
+
+/* SIGNUP FORM/LOGIN FORM PARENT STYLING */
 .sign-up-form h2,
 .login-form h2 {
-    text-align: center;
+  text-align: center;
 }
 
+.login-signup-title {
+  color: rgb(1, 104, 1);
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+}
+
+.login-signup-btn {
+  background-color: rgb(95, 95, 95);
+  border: none;
+}
+
+.login-signup-btn:hover {
+  background-color: rgb(1, 104, 1);
+  border: none;
+}
+
+/* ------------------------------------------
+---------  SIGNUP/LOGIN STYLING ENDS --------
+-------------------------------------------*/
+
+/* ------------------------------------------
+---------- HOMEPAGE STYLING BEGINS ----------
+------------------------------------------ */
+
+/* home parent element styling */
+.home-el {
+  text-align: center;
+}
+
+#home-title {
+  color: rgb(1, 104, 1);
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+}
+
+/* ------------------------------------------
+---------- HOMEPAGE STYLING ENDS ----------
+------------------------------------------ */
+
+/* ------------------------------------------
+---------  DASHBOARD STYLING STARTS --------
+-------------------------------------------*/
+
+/* Dashboard main styling */
+.title-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+/* Dashboard title styling */
+.dash-title {
+  width: 40%;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+  color: rgb(1, 104, 1);
+  border-bottom: solid 1px rgb(95, 95, 95);
+}
+
+#fav-title {
+  color: rgb(95, 95, 95);
+  margin: 40px 0 20px 0;
+  text-align: center;
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+}
+
+/* ------------------------------------------
+-----------  DASHBOARD STYLING ENDS ----------
+-------------------------------------------*/

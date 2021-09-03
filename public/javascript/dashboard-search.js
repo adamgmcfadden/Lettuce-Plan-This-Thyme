@@ -96,7 +96,7 @@ function getRecipe(searchValue) {
       let summary = $(this).siblings(".recipeURL").attr("href");
       let image = $(this).siblings(".recipeImage").attr("src");
       
-      console.log(ingred);
+    //   console.log(ingred);
       
       const response = fetch(`/api/recipes`, {
         method: "POST",
