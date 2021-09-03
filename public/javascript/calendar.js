@@ -146,18 +146,19 @@ function new_meal(meal) {
     .unbind()
     .click({ date: meal.data.date }, function () {
       var date = meal.data.date;
+      let type = $("#type").val();
       var name = $("#name").val().trim();
-      var count = $("#count").val();
+      var time = $("#time").val();
       var day = parseInt($(".active-date").html());
       // Basic form validation
       if (name.length === 0) {
         $("#name").addClass("error-input");
-      } else if (count.length == 0) {
-        $("#count").addClass("error-input");
+      } else if (time.length == 0) {
+        $("#time").addClass("error-input");
       } else {
         $("#dialog").hide(250);
         console.log("new meal");
-        new_meal_json(name, count, date, day);
+        new_meal_json(name, time, type, date, day);
         date.setDate(day);
         init_calendar(date);
       }
@@ -165,13 +166,15 @@ function new_meal(meal) {
 }
 
 // Adds a json meal to meal_data
-function new_meal_json(name, count, date, day) {
+function new_meal_json(name, time, type, date, day) {
   var meal = {
-    occasion: name,
-    invited_count: count,
+    meal: type,
+    title: name,
+    cook_time: time,
     year: date.getFullYear(),
     month: date.getMonth() + 1,
     day: day,
+    summary: "abc",
   };
   meal_data["meals"].push(meal);
 }

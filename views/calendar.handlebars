@@ -59,10 +59,11 @@
                   <div class="form-container" align="center">
                     <label class="form-label" id="valueFromMyButton" for="type">
                       Meal Type</label>
-                    <select id="count" name="type" form="form">
-                      <option value="breakfast">Breakfast</option>
-                      <option value="lunch">Lunch</option>
-                      <option value="dinner">Dinner </option>
+                    <select id="type" name="type" form="form">
+                      <option value="Breakfast">Breakfast</option>
+                      <option value="Lunch">Lunch</option>
+                      <option value="Dinner">Dinner </option>
+                      <option value="Dessert">Dessert </option>
 
                     </select>
                     <br />
@@ -72,6 +73,14 @@
                       for="name"
                     >Meal Name</label>
                     <input class="input" type="text" id="name" maxlength="36" />
+                    <br />
+                    <label
+                      class="form-label"
+                      id="valueFromMyButton"
+                      for="time"
+                    >Cook Time</label>
+                    <input class="input" type="number" id="time"  />
+                    
                     <input
                       type="button"
                       value="Cancel"
