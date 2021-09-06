@@ -12,16 +12,39 @@ router.get("/", (req, res) => {
     });
 });
 
+// router.post("/", withAuth, (req, res) => {
+//   Recipes.create({
+//     title: req.body.title,
+//     summary: req.body.summary,
+//     nutrition: req.body.nutrition,
+//     servings: req.body.servings,
+//     cook_time: req.body.cook_time,
+//     user_id: req.session.user_id,
+//     image: req.body.image,
+//     ingred: req.body.ingred,
+//   })
+//     .then((dbPostData) => res.json(dbPostData))
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 router.post("/", withAuth, (req, res) => {
-  Recipes.create({
-    title: req.body.title,
-    summary: req.body.summary,
-    nutrition: req.body.nutrition,
-    servings: req.body.servings,
-    cook_time: req.body.cook_time,
-    user_id: req.session.user_id,
-    image: req.body.image,
-    ingred: req.body.ingred,
+  Recipes.findOrCreate({
+    defaults: {
+      title: req.body.title,
+      summary: req.body.summary,
+      nutrition: req.body.nutrition,
+      servings: req.body.servings,
+      cook_time: req.body.cook_time,
+      user_id: req.session.user_id,
+      image: req.body.image,
+      ingred: req.body.ingred,
+    },
+    where: {
+      title: req.body.title,
+      user_id: req.session.user_id,
+    }
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {
