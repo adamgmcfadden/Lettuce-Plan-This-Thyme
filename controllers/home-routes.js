@@ -2,6 +2,7 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 const fetch = require("node-fetch");
 const { response } = require("express");
+var nodemailer = require('nodemailer');
 
 router.get("/", (req, res) => {
   res.render("home", {
@@ -19,6 +20,35 @@ router.get("/login", (req, res) => {
     res.redirect("/dashboard");
   }
   res.render("login", { style: "style.css" });
+});
+
+router.post("/send", (req, res) => {
+
+  console.log(req.email)
+  
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "lettuceplanthisthyme@gmail.com",
+      pass: "Thisthyme1234!"
+    }
+  });
+
+  const mailOptions = {
+    from: "lettuceplanthisthyme@gmail.com",
+    to: req.body.email,
+    // to: "tylerladas@hotmail.com",
+    subject: "Welcome!",
+    text: "Let's get cooking!",
+  };
+
+  transporter.sendMail(mailOptions, function(err, res) {
+    if (err) {
+      console.error("there was an error: ", err);
+    } else {
+      console.log("here is the res: ", res);
+    }
+  });
 });
 
 // router.get('/recipes', (req, res) => {
