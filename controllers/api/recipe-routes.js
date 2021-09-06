@@ -33,7 +33,8 @@ router.post("/", withAuth, (req, res) => {
 router.delete('/:title', withAuth, (req, res) => {
   Recipes.destroy({
     where: {
-      title: req.params.title
+      title: req.params.title,
+      user_id: req.session.user_id,
     }
   })
     .then(dbCommentData => {
