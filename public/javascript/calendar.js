@@ -225,29 +225,33 @@ function show_meals(meals, month, day) {
     $(".meals-container").append(meal_card);
   } else {
     // Go through and add each meal as a card to the meals container
-    for (var i = 0; i < meals.length; i++) {
-      if (meals[i] !== "abc") {
-        var meal_card = $(`<div class="card">
+
+    for (let i = 0; i < meals.length; i++) {
+      let meal_card;
+      if (meals[i]["summary"] === "abc") {
+        meal_card = $(`<div class="card">
+      
+        
       <h5 class="card-header">${meals[i]["meal"]}</h5>
       <div class="card-body">
         <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
         <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
-        <a href="${meals[i]["summary"]}" target="_blank" class="btn btn-primary">Click Here for Recipe</a>
         <button class='btn btn-primary destroy'>delete</button>
         </div>
     </div>`);
-        $(".meals-container").append(meal_card);
       } else {
-        var meal_card = $(`<div class="card">
+        meal_card = $(`<div class="card">
     <h5 class="card-header">${meals[i]["meal"]}</h5>
     <div class="card-body">
       <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
       <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
-      
+      <a href="${meals[i]["summary"]}" target="_blank" class="btn btn-primary">Click Here for Recipe</a>
+       
       <button class='btn btn-primary destroy'>delete</button>
       </div>
   </div>`);
       }
+      $(".meals-container").append(meal_card);
     }
   }
   $(".destroy").on("click", function () {
