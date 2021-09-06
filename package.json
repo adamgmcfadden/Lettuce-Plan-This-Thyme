@@ -29,6 +29,7 @@
     "express-session-sequelize": "^2.3.0",
     "mysql2": "^2.3.0",
     "node-fetch": "^2.6.1",
+    "nodemailer": "^6.6.3",
     "sequelize": "^6.6.5",
     "twilio": "^3.67.1"
   }
