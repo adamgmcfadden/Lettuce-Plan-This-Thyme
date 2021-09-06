@@ -25,6 +25,7 @@ An application that assists its users in planning their meals by providing a var
 - MySQL2
 - dotenv
 - bcrypt
+- Nodemailer
 
 ## Table of Contents
 
