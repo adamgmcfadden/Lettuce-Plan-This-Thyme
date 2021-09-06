@@ -146,18 +146,19 @@ function new_meal(meal) {
     .unbind()
     .click({ date: meal.data.date }, function () {
       var date = meal.data.date;
+      let type = $("#type").val();
       var name = $("#name").val().trim();
-      var count = $("#count").val();
+      var time = $("#time").val();
       var day = parseInt($(".active-date").html());
       // Basic form validation
       if (name.length === 0) {
         $("#name").addClass("error-input");
-      } else if (count.length == 0) {
-        $("#count").addClass("error-input");
+      } else if (time.length == 0) {
+        $("#time").addClass("error-input");
       } else {
         $("#dialog").hide(250);
         console.log("new meal");
-        new_meal_json(name, count, date, day);
+        new_meal_json(name, time, type, date, day);
         date.setDate(day);
         init_calendar(date);
       }
@@ -165,15 +166,40 @@ function new_meal(meal) {
 }
 
 // Adds a json meal to meal_data
-function new_meal_json(name, count, date, day) {
-  var meal = {
-    occasion: name,
-    invited_count: count,
+function new_meal_json(name, time, type, date, day) {
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let cook_time = time;
+  let summary = "abc";
+  //let day = day;
+  let meal = type;
+  let title = name;
+
+  const newMeal = {
+    meal: type,
+    title: name,
+    cook_time: time,
     year: date.getFullYear(),
     month: date.getMonth() + 1,
     day: day,
+    summary: "abc",
   };
-  meal_data["meals"].push(meal);
+  const response = fetch(`/calendar`, {
+    method: "POST",
+    body: JSON.stringify({
+      year,
+      month,
+      day,
+      meal,
+      title,
+      cook_time,
+      summary,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  meal_data["meals"].push(newMeal);
 }
 
 // Display all meals of the selected date in card views
@@ -200,7 +226,8 @@ function show_meals(meals, month, day) {
   } else {
     // Go through and add each meal as a card to the meals container
     for (var i = 0; i < meals.length; i++) {
-      var meal_card = $(`<div class="card">
+      if (meals[i] !== "abc") {
+        var meal_card = $(`<div class="card">
       <h5 class="card-header">${meals[i]["meal"]}</h5>
       <div class="card-body">
         <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
@@ -209,7 +236,18 @@ function show_meals(meals, month, day) {
         <button class='btn btn-primary destroy'>delete</button>
         </div>
     </div>`);
-      $(".meals-container").append(meal_card);
+        $(".meals-container").append(meal_card);
+      } else {
+        var meal_card = $(`<div class="card">
+    <h5 class="card-header">${meals[i]["meal"]}</h5>
+    <div class="card-body">
+      <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
+      <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
+      
+      <button class='btn btn-primary destroy'>delete</button>
+      </div>
+  </div>`);
+      }
     }
   }
   $(".destroy").on("click", function () {
