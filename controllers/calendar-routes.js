@@ -29,7 +29,7 @@ router.get("/all", (req, res) => {
         return;
       }
       res.json(dbUserData);
-      console.log(dbUserData);
+      //console.log(dbUserData);
     })
     .catch((err) => {
       console.log(err);
@@ -45,7 +45,6 @@ router.post("/", (req, res) => {
     meal: req.body.meal,
     cook_time: req.body.cook_time,
     summary: req.body.summary,
-
     user_id: req.session.user_id,
   })
     .then((dbPostData) => res.render("calendar", { data: req.body }))
@@ -54,10 +53,10 @@ router.post("/", (req, res) => {
       res.status(500).json(err);
     });
 });
-router.delete("/:title", (req, res) => {
+router.delete("/:id", (req, res) => {
   Calendar.destroy({
     where: {
-      title: req.params.title,
+      id: req.params.id,
       user_id: req.session.user_id,
     },
   })

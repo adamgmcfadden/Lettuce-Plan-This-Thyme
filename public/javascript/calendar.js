@@ -6,8 +6,8 @@ $(document).ready(function () {
       const recipesData = recipes;
       meal_data["meals"] = recipesData;
       //  console.log(meal_data);
-      var date = new Date();
-      var today = date.getDate();
+      let date = new Date();
+      let today = date.getDate();
       // Set click handlers for DOM elements
       $(".right-button").click({ date: date }, next_year);
       $(".left-button").click({ date: date }, prev_year);
@@ -16,7 +16,7 @@ $(document).ready(function () {
       // Set current month as active
       $(".months-row").children().eq(date.getMonth()).addClass("active-month");
       init_calendar(date);
-      var meals = check_meals(today, date.getMonth() + 1, date.getFullYear());
+      let meals = check_meals(today, date.getMonth() + 1, date.getFullYear());
       show_meals(meals, months[date.getMonth()], today);
     });
 });
@@ -25,21 +25,21 @@ $(document).ready(function () {
 function init_calendar(date) {
   $(".tbody").empty();
   $(".meals-container").empty();
-  var calendar_days = $(".tbody");
-  var month = date.getMonth();
-  var year = date.getFullYear();
-  var day_count = days_in_month(month, year);
-  var row = $("<tr class='table-row'></tr>");
-  var today = date.getDate();
+  const calendar_days = $(".tbody");
+  let month = date.getMonth();
+  let year = date.getFullYear();
+  let day_count = days_in_month(month, year);
+  let row = $("<tr class='table-row'></tr>");
+  let today = date.getDate();
   // Set date to 1 to find the first day of the month
   date.setDate(1);
-  var first_day = date.getDay();
+  let first_day = date.getDay();
   // 35+firstDay is the number of date elements to be added to the dates table
   // 35 is from (7 days in a week) * (up to 5 rows of dates in a month)
-  for (var i = 0; i < 35 + first_day; i++) {
+  for (let i = 0; i < 35 + first_day; i++) {
     // Since some of the elements will be blank,
     // need to calculate actual date from index
-    var day = i - first_day + 1;
+    let day = i - first_day + 1;
     // If it is a sunday, make a new row
     if (i % 7 === 0) {
       calendar_days.append(row);
@@ -47,11 +47,11 @@ function init_calendar(date) {
     }
     // if current index isn't a day in this month, make it blank
     if (i < first_day || day > day_count) {
-      var curr_date = $("<td class='table-date nil'>" + "</td>");
+      const curr_date = $("<td class='table-date nil'>" + "</td>");
       row.append(curr_date);
     } else {
-      var curr_date = $("<td class='table-date'>" + day + "</td>");
-      var meals = check_meals(day, month + 1, year);
+      const curr_date = $("<td class='table-date'>" + day + "</td>");
+      let meals = check_meals(day, month + 1, year);
       if (today === day && $(".active-date").length === 0) {
         curr_date.addClass("active-date");
         show_meals(meals, months[month], day);
@@ -75,8 +75,8 @@ function init_calendar(date) {
 
 // Get the number of days in a given month/year
 function days_in_month(month, year) {
-  var monthStart = new Date(year, month, 1);
-  var monthEnd = new Date(year, month + 1, 1);
+  let monthStart = new Date(year, month, 1);
+  let monthEnd = new Date(year, month + 1, 1);
   return (monthEnd - monthStart) / (1000 * 60 * 60 * 24);
 }
 
@@ -93,10 +93,10 @@ function date_click(meal) {
 function month_click(meal) {
   $(".meals-container").show(250);
   $("#dialog").hide(250);
-  var date = meal.data.date;
+  let date = meal.data.date;
   $(".active-month").removeClass("active-month");
   $(this).addClass("active-month");
-  var new_month = $(".month").index(this);
+  let new_month = $(".month").index(this);
   date.setMonth(new_month);
   init_calendar(date);
 }
@@ -104,8 +104,8 @@ function month_click(meal) {
 //  handler for when the year right-button is clicked
 function next_year(meal) {
   $("#dialog").hide(250);
-  var date = meal.data.date;
-  var new_year = date.getFullYear() + 1;
+  let date = meal.data.date;
+  let new_year = date.getFullYear() + 1;
   $("year").html(new_year);
   date.setFullYear(new_year);
   init_calendar(date);
@@ -114,8 +114,8 @@ function next_year(meal) {
 //  handler for when the year left-button is clicked
 function prev_year(meal) {
   $("#dialog").hide(250);
-  var date = meal.data.date;
-  var new_year = date.getFullYear() - 1;
+  let date = meal.data.date;
+  let new_year = date.getFullYear() - 1;
   $("year").html(new_year);
   date.setFullYear(new_year);
   init_calendar(date);
@@ -145,19 +145,21 @@ function new_meal(meal) {
   $("#ok-button")
     .unbind()
     .click({ date: meal.data.date }, function () {
-      var date = meal.data.date;
-      let type = $("#type").val();
-      var name = $("#name").val().trim();
-      var time = $("#time").val();
-      var day = parseInt($(".active-date").html());
+      const date = meal.data.date;
+      const type = $("#type").val();
+      const name = $("#name").val().trim();
+      const time = $("#time").val();
+      let day = parseInt($(".active-date").html());
       // Basic form validation
       if (name.length === 0) {
         $("#name").addClass("error-input");
       } else if (time.length == 0) {
         $("#time").addClass("error-input");
+      } else if (type.length == 0) {
+        $("#tyoe").addClass("error-input");
       } else {
         $("#dialog").hide(250);
-        console.log("new meal");
+        //console.log("new meal");
         new_meal_json(name, time, type, date, day);
         date.setDate(day);
         init_calendar(date);
@@ -167,14 +169,16 @@ function new_meal(meal) {
 
 // Adds a json meal to meal_data
 function new_meal_json(name, time, type, date, day) {
+  //set/get info for calendar model
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
   let cook_time = time;
+  //make the link a default value so it can be filtered out
   let summary = "abc";
   //let day = day;
   let meal = type;
   let title = name;
-
+  // set up json to push into array so that when user adds a meal the page dosn't have to refresh to save it.
   const newMeal = {
     meal: type,
     title: name,
@@ -184,6 +188,7 @@ function new_meal_json(name, time, type, date, day) {
     day: day,
     summary: "abc",
   };
+  // post user meal to db
   const response = fetch(`/calendar`, {
     method: "POST",
     body: JSON.stringify({
@@ -199,6 +204,7 @@ function new_meal_json(name, time, type, date, day) {
       "Content-Type": "application/json",
     },
   });
+  //push meal to array
   meal_data["meals"].push(newMeal);
 }
 
@@ -228,51 +234,50 @@ function show_meals(meals, month, day) {
 
     for (let i = 0; i < meals.length; i++) {
       let meal_card;
+      // check if there is no link to the recipe
       if (meals[i]["summary"] === "abc") {
         meal_card = $(`<div class="card">
-      
-        
-      <h5 class="card-header">${meals[i]["meal"]}</h5>
-      <div class="card-body">
-        <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
-        <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
-        <button class='btn destroy meal-card-btn-delete'>delete</button>
-        </div>
-    </div>`);
+            <h5 class="card-header">${meals[i]["meal"]}</h5>
+              <div class="card-body">
+                <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
+                <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
+                <button id='${i}' class='btn destroy meal-card-btn-delete'>Delete</button>
+              </div>
+          </div>`);
       } else {
+        //if there is a link
         meal_card = $(`<div class="card">
-    <h5 class="card-header">${meals[i]["meal"]}</h5>
-    <div class="card-body">
-      <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
-      <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
-      <a href="${meals[i]["summary"]}" target="_blank" class="btn meal-card-btn-recipe">Click Here for Recipe</a>
-       
-      <button class='btn destroy meal-card-btn-delete'>delete</button>
-      </div>
-  </div>`);
+            <h5 class="card-header">${meals[i]["meal"]}</h5>
+              <div class="card-body">
+                <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
+                <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
+                <a href="${meals[i]["summary"]}" target="_blank" class="btn meal-card-btn-recipe">Click Here for Recipe</a>
+                <button id='${i}' class='btn destroy meal-card-btn-delete'>Delete</button>
+              </div>
+            </div>`);
       }
       $(".meals-container").append(meal_card);
     }
   }
   $(".destroy").on("click", function () {
-    //alert("hi");
-    let title = $(this).siblings(".card-title").text();
-    //let title = temp.split(":")[1].trim();
-    console.log(title);
+    // set handler for deleting meal from calendar
 
-    const response = fetch(`/calendar/${title}`, {
+    let x = $(this).attr("id");
+    let id = meals[x]["id"];
+    //send id to destroy route
+    console.log(id);
+    const response = fetch(`/calendar/${id}`, {
       method: "DELETE",
     });
-
     document.location.reload();
   });
 }
 
 // Checks if a specific date has any meals
 function check_meals(day, month, year) {
-  var meals = [];
-  for (var i = 0; i < meal_data["meals"].length; i++) {
-    var meal = meal_data["meals"][i];
+  const meals = [];
+  for (let i = 0; i < meal_data["meals"].length; i++) {
+    let meal = meal_data["meals"][i];
     if (
       meal["day"] === day &&
       meal["month"] === month &&
