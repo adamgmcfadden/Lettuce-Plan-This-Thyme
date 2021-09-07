@@ -187,6 +187,9 @@ document
     event.preventDefault();
     document.querySelector("#recipe-container").innerHTML = "";
     const searchValue = document.querySelector(".search-bar").value.trim();
+    if (searchValue.length <=0){
+      return false
+    }
     getRecipe(searchValue);
     document.querySelector(".search-bar").value = "";
   });
