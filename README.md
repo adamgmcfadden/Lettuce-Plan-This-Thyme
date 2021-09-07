@@ -6,13 +6,14 @@
 ![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg "License Badge")
 ![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg "License Badge")
 
-An application that assists its users in planning their meals by providing a variety of options based on user choices and then populating a shopping list with the required ingredients.
+An application that assists its users in planning their meals by providing a variety of options based on the user's search keyword and allowing them to save their favourite recipes and add them to their calendar.
 
 ### Languages Used:
 
 ![Language](https://img.shields.io/badge/HTML-green.svg "Language Badge")
 ![Language](https://img.shields.io/badge/CSS-blue.svg "Language Badge")
 ![Language](https://img.shields.io/badge/JavaScript-yellow.svg "Language Badge")
+![Language](https://img.shields.io/badge/Handlebars-orange.svg "Language Badge")
 
 ### NPM packages Used:
 
@@ -24,6 +25,7 @@ An application that assists its users in planning their meals by providing a var
 - MySQL2
 - dotenv
 - bcrypt
+- Nodemailer
 
 ## Table of Contents
 
@@ -37,7 +39,30 @@ An application that assists its users in planning their meals by providing a var
 
 ### Screenshots:
 
------NOT DONE ---- GIVE SITE USAGE DIRECTIONS
+Home Page:
+
+![Home page](https://user-images.githubusercontent.com/83710803/132253158-4c74e369-56de-4048-a318-fa3bb39e1a3f.png)
+
+Login Page:
+
+![Login Page](https://user-images.githubusercontent.com/83710803/132253160-31609d99-4022-4525-982f-d01b61cd2102.png)
+
+Signup Page: 
+
+![Signup Page](https://user-images.githubusercontent.com/83710803/132253163-fab63e2a-e801-4e9d-a0a8-ee6c7ce124aa.png)
+
+Recipe Search:
+
+![Recipe Search](https://user-images.githubusercontent.com/83710803/132253165-e92d33ad-cb2d-4b12-8ef0-2bdb4c7d9137.png)
+
+Your Dashboard:
+
+![Dashboard](https://user-images.githubusercontent.com/83710803/132253167-3795e9f9-c3e6-4243-bc59-41be3054ec88.png)
+
+Your Calendar:
+
+![Calendar](https://user-images.githubusercontent.com/83710803/132253169-554922b7-df8d-4717-8eae-d2af27088d46.png)
+
 
 ## Credits
 

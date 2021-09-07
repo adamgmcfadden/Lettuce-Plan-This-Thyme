@@ -236,7 +236,7 @@ function show_meals(meals, month, day) {
       <div class="card-body">
         <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
         <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
-        <button class='btn btn-primary destroy'>delete</button>
+        <button class='btn destroy meal-card-btn-delete'>delete</button>
         </div>
     </div>`);
       } else {
@@ -245,9 +245,9 @@ function show_meals(meals, month, day) {
     <div class="card-body">
       <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
       <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
-      <a href="${meals[i]["summary"]}" target="_blank" class="btn btn-primary">Click Here for Recipe</a>
+      <a href="${meals[i]["summary"]}" target="_blank" class="btn meal-card-btn-recipe">Click Here for Recipe</a>
        
-      <button class='btn btn-primary destroy'>delete</button>
+      <button class='btn destroy meal-card-btn-delete'>delete</button>
       </div>
   </div>`);
       }
