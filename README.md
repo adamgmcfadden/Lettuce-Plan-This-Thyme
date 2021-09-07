@@ -61,7 +61,8 @@ Your Dashboard:
 
 Your Calendar:
 
-![Calendar](https://user-images.githubusercontent.com/83710803/132253169-554922b7-df8d-4717-8eae-d2af27088d46.png)
+![Calendar](https://user-images.githubusercontent.com/83710803/132351007-a10a7044-f132-43ec-9ef9-c849b173ad85.png)
+
 
 
 ## Credits
