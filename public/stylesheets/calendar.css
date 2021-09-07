@@ -424,3 +424,44 @@ nav {
 .error-input {
   border-color: #048a2c;
 }
+
+/* meal card styling */
+.card-header {
+  color: rgb(255, 255, 255);
+  background-image: url(../images/wood-cut-board.jpg);
+  background-size: cover;
+  border: solid 1px #048a2c;
+}
+
+/* meal card body styling  */
+.card-body {
+  background-color: rgba(243, 227, 207, 0.95);
+
+  border: solid 1px #048a2c;
+}
+
+/* meal card delete button styling */
+.meal-card-btn-delete {
+  color: #fff;
+  background-color: rgb(161, 0, 27);
+}
+
+/* meal card delete button hover styling */
+.meal-card-btn-delete:hover {
+  color: #fff;
+  font-weight: bold;
+  background-color: rgb(218, 2, 38);
+}
+
+/* Search recipe button styling for meal card */
+.meal-card-btn-recipe {
+  color: #fff;
+  background-color: #ffc400;
+}
+
+/* Search recipe button hover styling for meal card */
+.meal-card-btn-recipe:hover {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  background-color: #ffd95d;
+}

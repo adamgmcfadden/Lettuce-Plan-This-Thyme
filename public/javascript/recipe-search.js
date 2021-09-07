@@ -86,16 +86,16 @@ function getRecipe(searchValue) {
       calendarInfo.className = "calInfo";
       calendarInfo.id = `calInfo${id}`;
       calendarInfo.innerHTML = `
-      <p> Meal type 
+      <p class="p-style"> Meal type 
         <select name="meal" id="meal${id}">
-          <option value="breakfast">breakfast</option>
-          <option value="lunch">lunch</option>
-          <option value="dinner">dinner</option>
-          <option value="dessert">dessert</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Dessert">Dessert</option>
         </select>
       </p>
       <p>Date: <input type="text" id="datepicker${id}" /></p>
-      <button class="date">Select</button>
+      <button class="date btn btn-outline-success">Select</button>
       `;
       calendarInfo.style.display = "none";
       recipeCard.appendChild(calendarInfo);
