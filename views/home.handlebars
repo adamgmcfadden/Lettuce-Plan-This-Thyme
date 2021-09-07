@@ -8,18 +8,21 @@
     fit your tastes and dietary needs.<br />
     <a href="/signup">Sign up </a>to enjoy our meal scheduler and receive daily
     reminders for recipes and ingredients!</p>
-  <form class="d-flex search-form">
-    <input
-      class="form-control me-2 search-bar"
-      type="search"
-      placeholder="Search Recipes"
-      aria-label="Search"
-    />
-    <button
-      class="btn btn-outline-success search-btn"
-      type="submit"
-    >Search</button>
-  </form>
+  {{#if loggedIn}}
+    <form class="d-flex search-form">
+      <input
+        class="form-control me-2 search-bar"
+        type="search"
+        placeholder="Search Recipes"
+        aria-label="Search"
+      />
+      <button
+        class="btn btn-outline-success search-btn"
+        type="submit"
+      >Search</button>
+
+    </form>
+  {{/if}}
 </div>
 
 <div class="container">
