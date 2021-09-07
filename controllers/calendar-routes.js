@@ -53,10 +53,10 @@ router.post("/", (req, res) => {
       res.status(500).json(err);
     });
 });
-router.delete("/:title", (req, res) => {
+router.delete("/:id", (req, res) => {
   Calendar.destroy({
     where: {
-      title: req.params.title,
+      id: req.params.id,
       user_id: req.session.user_id,
     },
   })
