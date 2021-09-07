@@ -241,7 +241,7 @@ function show_meals(meals, month, day) {
               <div class="card-body">
                 <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
                 <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
-                <button class='btn destroy meal-card-btn-delete'>Delete</button>
+                <button id='${i}' class='btn destroy meal-card-btn-delete'>Delete</button>
               </div>
           </div>`);
       } else {
@@ -252,7 +252,7 @@ function show_meals(meals, month, day) {
                 <h5 id="${meals[i]["id"]}" class="card-title">${meals[i]["title"]}</h5>
                 <p class="card-text">${meals[i]["cook_time"]}+ mins</p>
                 <a href="${meals[i]["summary"]}" target="_blank" class="btn meal-card-btn-recipe">Click Here for Recipe</a>
-                <button class='btn destroy meal-card-btn-delete'>Delete</button>
+                <button id='${i}' class='btn destroy meal-card-btn-delete'>Delete</button>
               </div>
             </div>`);
       }
@@ -261,9 +261,12 @@ function show_meals(meals, month, day) {
   }
   $(".destroy").on("click", function () {
     // set handler for deleting meal from calendar
-    let title = $(this).siblings(".card-title").text();
-    //send title to destroy route
-    const response = fetch(`/calendar/${title}`, {
+
+    let x = $(this).attr("id");
+    let id = meals[x]["id"];
+    //send id to destroy route
+    console.log(id);
+    const response = fetch(`/calendar/${id}`, {
       method: "DELETE",
     });
     document.location.reload();
