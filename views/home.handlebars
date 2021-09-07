@@ -4,10 +4,9 @@
 
 <div class="container home-el">
   <h1 id="home-title">Plan, Cook, Eat!</h1>
-  <p>Let's take the guesswork out of mealtime! Search our site for recipes that
-    fit your tastes and dietary needs.<br />
-    <a href="/signup">Sign up </a>to enjoy our meal scheduler and receive daily
-    reminders for recipes and ingredients!</p>
+  <p>Let's take the guesswork out of mealtime!<br />
+    <a href="/signup">Sign up </a>to enjoy our meal scheduler and browse thousands of delicious recipes that
+    fit your tastes and dietary needs!</p>
   {{#if loggedIn}}
     <form class="d-flex search-form">
       <input
@@ -35,4 +34,6 @@
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{{#if loggedIn}}
 <script src="/javascript/recipe-search.js"></script>
+{{/if}}
