@@ -1,16 +1,16 @@
 async function emailHandler(event) {
-    event.preventDefault();
-  
-    const email = document.querySelector("#floatingEmail").value.trim();
+  event.preventDefault();
 
-    const response = await fetch("/send", {
-        method: "post",
-        body: JSON.stringify({
-          email,
-        }),
-        headers: {"Content-Type": "application/json"},
-      });
-      console.log(response)
+  const email = document.querySelector("#floatingEmail").value.trim();
+
+  const response = await fetch("/send", {
+    method: "post",
+    body: JSON.stringify({
+      email,
+    }),
+    headers: { "Content-Type": "application/json" },
+  });
+  // console.log(response)
 }
 //   return fetch("/send", options)
 //     .then(res => res.json())
