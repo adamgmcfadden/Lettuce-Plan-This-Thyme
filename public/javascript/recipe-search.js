@@ -1,17 +1,7 @@
 // my api
-<<<<<<< Updated upstream
-
-=======
-const api_key = process.env.APIKEY1;
->>>>>>> Stashed changes
 const url = "https://api.spoonacular.com/recipes/complexSearch?query=";
 const url2 =
-<<<<<<< HEAD
-  "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey" +
-  api_key;
-=======
   "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey=ca7027577b24470592ca8275b05b47b3";
->>>>>>> 11e88aa8d29d7c7f73c59a4de4d076857ee1751b
 
 function getRecipe(searchValue) {
   // console.log(searchValue)
