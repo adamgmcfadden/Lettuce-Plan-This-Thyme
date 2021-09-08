@@ -1,8 +1,11 @@
+// Import dependencies
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
+// Initialize Recipes model by extending off sequelize model class
 class Recipes extends Model {}
-// create fields/columns for Post model
+
+// create fields/columns for Recipes model
 Recipes.init(
   {
     id: {
@@ -38,7 +41,7 @@ Recipes.init(
     },
     ingred: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -56,4 +59,5 @@ Recipes.init(
   }
 );
 
+// export model
 module.exports = Recipes;

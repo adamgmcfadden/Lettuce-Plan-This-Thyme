@@ -1,8 +1,11 @@
+// import dependencies
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
+// initialize Calendar model by extending off sequelize model class
 class Calendar extends Model {}
 
+// set up fields and rules for Calendar model
 Calendar.init(
   {
     id: {
@@ -67,4 +70,5 @@ Calendar.init(
   }
 );
 
+// export model
 module.exports = Calendar;

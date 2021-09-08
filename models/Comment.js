@@ -1,8 +1,12 @@
+// Did not use this model for current app release. May use in future release
+// import dependencies
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
+// Initialize Comment model by extending off sequelize model class
 class Comment extends Model {}
 
+// set up fields and rules for comment model
 Comment.init(
   {
     id: {
@@ -41,4 +45,5 @@ Comment.init(
   }
 );
 
+// export model
 module.exports = Comment;

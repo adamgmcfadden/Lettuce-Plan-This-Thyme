@@ -5,8 +5,8 @@
 <div class="container home-el">
   <h1 id="home-title">Plan, Cook, Eat!</h1>
   <p>Let's take the guesswork out of mealtime!<br />
-    <a href="/signup">Sign up </a>to enjoy our meal scheduler and browse thousands of delicious recipes that
-    fit your tastes and dietary needs!</p>
+    <a href="/signup">Sign up </a>to enjoy our meal scheduler and browse
+    thousands of delicious recipes that fit your tastes and dietary needs!</p>
   {{#if loggedIn}}
     <form class="d-flex search-form">
       <input
@@ -29,11 +29,13 @@
 
   </div>
 </div>
-
+{{! link to jquery }}
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+{{! link to jquery ui }}
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{{! only use search if logged in }}
 {{#if loggedIn}}
-<script src="/javascript/recipe-search.js"></script>
+  <script src="/javascript/recipe-search.js"></script>
 {{/if}}

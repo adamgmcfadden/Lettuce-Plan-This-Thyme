@@ -4,7 +4,7 @@ const Recipes = require("./Recipes");
 const Comment = require("./Comment");
 const Calendar = require("./Calendar");
 
-// create associations
+// create all associations
 User.hasMany(Recipes, {
   foreignKey: "user_id",
 });
@@ -38,4 +38,6 @@ User.hasMany(Calendar, {
   foreignKey: "user_id",
   onDelete: "SET Null",
 });
+
+// export the models to be used in routes
 module.exports = { User, Recipes, Comment, Calendar };

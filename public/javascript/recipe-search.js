@@ -12,6 +12,7 @@ function getRecipe(searchValue) {
   showRecipes = (recipes) => {
     //  console.log(recipes);
 
+    // dom manipulation when searching for recipes
     const heroImage = document.querySelector(".hero-image");
     heroImage.style.background = "none";
 

@@ -1,3 +1,4 @@
+// format date, plural words in handlebars
 module.exports = {
   format_date: (date) => {
     return `${new Date(date).getMonth() + 1}/${new Date(
@@ -9,13 +10,5 @@ module.exports = {
       return `${word}s`;
     }
     return word;
-  },
-  format_url: (url) => {
-    return url
-      .replace("http://", "")
-      .replace("https://", "")
-      .replace("www.", "")
-      .split("/")[0]
-      .split("?")[0];
   },
 };
