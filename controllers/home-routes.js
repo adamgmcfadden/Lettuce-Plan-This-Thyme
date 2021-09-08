@@ -3,7 +3,6 @@ const sequelize = require("../config/connection");
 const fetch = require("node-fetch");
 const { response } = require("express");
 var nodemailer = require("nodemailer");
-require("dotenv").config();
 
 router.get("/", (req, res) => {
   res.render("home", {
@@ -29,13 +28,13 @@ router.post("/send", (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: "lettuceplanthisthyme@gmail.com",
+      pass: "Thisthyme1234!",
     },
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: "lettuceplanthisthyme@gmail.com",
     to: req.body.email,
     // to: "tylerladas@hotmail.com",
     subject: "Welcome!",
