@@ -1,5 +1,4 @@
 // my api
-
 const url = "https://api.spoonacular.com/recipes/complexSearch?query=";
 const url2 =
   "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey=ca7027577b24470592ca8275b05b47b3";
