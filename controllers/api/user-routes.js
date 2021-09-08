@@ -117,4 +117,14 @@ router.post("/logout", withAuth, (req, res) => {
     res.status(404).end();
   }
 });
+router.delete("/:id", (req, res) => {
+  User.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
 module.exports = router;

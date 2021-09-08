@@ -1,10 +1,9 @@
 // my api
-// const apiKey = "ca7027577b24470592ca8275b05b47b3"
-// kt api
-// const apiKey = "c0a5df971c94493aa3d688d219a0a28d"
+
 const url = "https://api.spoonacular.com/recipes/complexSearch?query=";
 const url2 =
-  "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey=ca7027577b24470592ca8275b05b47b3";
+  "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey" +
+  process.env.APIKEY1;
 
 function getRecipe(searchValue) {
   // console.log(searchValue)
@@ -210,8 +209,8 @@ document
     document.querySelector(".backDiv").innerHTML = "";
     document.querySelector("#dash-recipe-container").innerHTML = "";
     const searchValue = document.querySelector(".search-bar").value.trim();
-    if (searchValue.length <=0){
-      return false
+    if (searchValue.length <= 0) {
+      return false;
     }
     getRecipe(searchValue);
     document.querySelector(".search-bar").value = "";

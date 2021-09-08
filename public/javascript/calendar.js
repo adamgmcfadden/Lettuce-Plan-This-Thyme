@@ -265,7 +265,7 @@ function show_meals(meals, month, day) {
     let x = $(this).attr("id");
     let id = meals[x]["id"];
     //send id to destroy route
-    console.log(id);
+    // console.log(id);
     const response = fetch(`/calendar/${id}`, {
       method: "DELETE",
     });
