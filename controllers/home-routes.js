@@ -1,10 +1,12 @@
+// import dependencies
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch"); // did not use. used to fetch in backend
 const { response } = require("express");
-var nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
 require("dotenv").config();
 
+// render homepage
 router.get("/", (req, res) => {
   res.render("home", {
     style: "style.css",
@@ -12,10 +14,12 @@ router.get("/", (req, res) => {
   });
 });
 
+//  render signup page
 router.get("/signup", (req, res) => {
   res.render("signup", { style: "style.css" });
 });
 
+// render login page
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/dashboard");
@@ -23,17 +27,19 @@ router.get("/login", (req, res) => {
   res.render("login", { style: "style.css" });
 });
 
+// send email on signup
 router.post("/send", (req, res) => {
   //  console.log(req.email)
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
+      // import credentials from .env file
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
   });
-
+  // email appearance
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: req.body.email,

@@ -6,23 +6,40 @@
     <title>Lettuce Plan This Thyme</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {{! link to google fonts }}
     <link
       href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,700&display=swap"
       rel="stylesheet"
     />
+    {{! link to fontawesome -- dont think we used it - check and remove if not }}
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.1/umd/popper.min.js" integrity="sha512-8jeQKzUKh/0pqnK24AfqZYxlQ8JdQjl9gGONwGwKbJiEaAPkD3eoIjz3IuX4IrP+dnxkchGUeWdXLazLHin+UQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js" integrity="sha512-NWNl2ZLgVBoi6lTcMsHgCQyrZVFnSmcaa3zRv0L3aoGXshwoxkGs3esa9zwQHsChGRL4aLDnJjJJeP6MjPX46Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{! link to popper.js }}
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.1/umd/popper.min.js"
+      integrity="sha512-8jeQKzUKh/0pqnK24AfqZYxlQ8JdQjl9gGONwGwKbJiEaAPkD3eoIjz3IuX4IrP+dnxkchGUeWdXLazLHin+UQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    {{! link to bootstrap for js }}
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"
+      integrity="sha512-NWNl2ZLgVBoi6lTcMsHgCQyrZVFnSmcaa3zRv0L3aoGXshwoxkGs3esa9zwQHsChGRL4aLDnJjJJeP6MjPX46Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    {{! link to bootstrap for css }}
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
+    {{! link to stylesheet for all pages (except calendar) }}
     <link rel="stylesheet" href="/stylesheets/{{style}}" />
+    {{! link to jquery UI }}
     <link
       rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
@@ -50,6 +67,7 @@
               <a class="nav-link" href="/">Home</a>
               <a class="nav-link" href="/dashboard">Dashboard</a>
               <a class="nav-link" href="/calendar">Calendar</a>
+              {{! if logged in, show logout, if logged out show login }}
               {{#if loggedIn}}
                 <a class="nav-link nav-logout" id="logout" href="#">Logout</a>
               {{else}}
@@ -69,9 +87,10 @@
         </div>
       </nav>
     </header>
-
+    {{! body from other handlebars files }}
     {{{body}}}
 
+    {{! logout functionality only works if logged in }}
     {{#if loggedIn}}
       <script src="/javascript/logout.js"></script>
     {{/if}}

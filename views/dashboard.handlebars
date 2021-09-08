@@ -14,8 +14,10 @@
 <div class="container fav-container">
   <h2 id="fav-title">Favorite Recipes</h2>
   <div id="recipe-container" class="row justify-content-around">
+    {{!-- import favourite recipes --}}
 {{#if recipes.length}}
 {{#each recipes}}
+{{!-- import recipe view from partials --}}
 {{> recipes/recipe-card }}
 {{/each}}
 {{/if}}
@@ -29,9 +31,13 @@
   </div>
 </div>
 
+{{!-- link to jquery --}}
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+{{!-- link to jquery ui--}}
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{{!-- link to front end js for dashboard search--}}
 <script src="/javascript/dashboard-search.js"></script>
+{{!-- link to front end js for deleting recipes from page--}}
 <script src="/javascript/delete-recipe.js"></script>
