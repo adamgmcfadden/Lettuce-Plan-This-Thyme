@@ -83,6 +83,7 @@ nav {
   clear: both;
 }
 
+/* meal card styling */
 .meal-card {
   padding: 20px 0;
   max-width: 100%;
@@ -430,14 +431,14 @@ nav {
   color: rgb(255, 255, 255);
   background-image: url(../images/wood-cut-board.jpg);
   background-size: cover;
-  border: solid 1px #048a2c;
+  border: solid 1px #000000;
 }
 
 /* meal card body styling  */
 .card-body {
   background-color: rgba(243, 227, 207, 0.95);
 
-  border: solid 1px #048a2c;
+  border: solid 1px #000000;
 }
 
 /* meal card delete button styling */

@@ -1,7 +1,10 @@
+//--- Import dependencies ---
 const Sequelize = require("sequelize");
 
+//--- hide credentials with dotenv
 require("dotenv").config();
 
+// create connection to our db
 let sequelize;
 
 if (process.env.JAWSDB_URL) {
@@ -18,4 +21,6 @@ if (process.env.JAWSDB_URL) {
     }
   );
 }
+
+// export db connection to be used in server.js
 module.exports = sequelize;

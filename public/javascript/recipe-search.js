@@ -1,9 +1,7 @@
 // my api
-
 const url = "https://api.spoonacular.com/recipes/complexSearch?query=";
 const url2 =
-  "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey" +
-  process.env.APIKEY1;
+  "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey=ca7027577b24470592ca8275b05b47b3";
 
 function getRecipe(searchValue) {
   // console.log(searchValue)
@@ -14,6 +12,7 @@ function getRecipe(searchValue) {
   showRecipes = (recipes) => {
     //  console.log(recipes);
 
+    // dom manipulation when searching for recipes
     const heroImage = document.querySelector(".hero-image");
     heroImage.style.background = "none";
 
