@@ -1,9 +1,9 @@
 // my api
-
+const api_key = process.env.APIKEY1;
 const url = "https://api.spoonacular.com/recipes/complexSearch?query=";
 const url2 =
   "&addRecipeInformation=true&addRecipeNutrition=true&number=20&fillIngredients=true&apiKey" +
-  process.env.APIKEY1;
+  api_key;
 
 function getRecipe(searchValue) {
   // console.log(searchValue)
