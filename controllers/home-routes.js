@@ -34,14 +34,14 @@ router.post("/send", (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      // import credentials from .env file
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      // import credentials from .env file which didn't work on heroku
+      user: "lettuceplanthisthyme@gmail.com",
+      pass: "Thisthyme1234!",
     },
   });
   // email appearance
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: "lettuceplanthisthyme@gmail.com",
     to: req.body.email,
     // to: "tylerladas@hotmail.com",
     subject: "Welcome!",

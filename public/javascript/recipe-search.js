@@ -131,8 +131,6 @@ function getRecipe(searchValue) {
           "Content-Type": "application/json",
         },
       });
-
-      //alert(title + " " + cals + " " + servings + " " + time + " " + url);
     });
     $(".addCal").on("click", function () {
       let z = $(this).siblings(".title").text();
