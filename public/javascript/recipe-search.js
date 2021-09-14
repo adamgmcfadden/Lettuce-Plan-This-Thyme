@@ -22,7 +22,8 @@ function getRecipe(searchValue) {
       let z = `${recipe.title}`;
       let id = z.split(" ").join("");
       const recipeCard = document.createElement("div");
-      recipeCard.className = `card recipe-card col-5 `;
+      recipeCard.className = `card recipe-card sm-col-12 md-col-5 `;
+      recipeCard.style="width: 30rem"
 
       recipesDiv.append(recipeCard);
 
@@ -64,7 +65,7 @@ function getRecipe(searchValue) {
       }
 
       const recipeURL = document.createElement("a");
-      recipeURL.className = "recipeURL";
+      recipeURL.className = "recipeURL card-link";
       recipeURL.href = `${recipe.sourceUrl}`;
       recipeURL.target = `_blank`;
       recipeURL.innerText = `Click here for recipe!`;
