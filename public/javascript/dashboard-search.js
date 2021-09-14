@@ -29,7 +29,8 @@ function getRecipe(searchValue) {
 
       //create the recipe card
       const recipeCard = document.createElement("div");
-      recipeCard.className = `card recipe-card col-5 `;
+      recipeCard.className = `card recipe-card sm-col-12 md-col-5 `;
+      recipeCard.style="width: 22rem"
       recipeCard.id = recipe;
       recipesDiv.append(recipeCard);
 

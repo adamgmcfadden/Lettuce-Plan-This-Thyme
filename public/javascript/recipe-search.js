@@ -22,7 +22,8 @@ function getRecipe(searchValue) {
       let z = `${recipe.title}`;
       let id = z.split(" ").join("");
       const recipeCard = document.createElement("div");
-      recipeCard.className = `card recipe-card col-5 `;
+      recipeCard.className = `card recipe-card sm-col-12 md-col-5 `;
+      recipeCard.style="width: 22rem"
 
       recipesDiv.append(recipeCard);
 
