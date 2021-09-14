@@ -1,5 +1,5 @@
 {{! view for recipe card - partial }}
-<div class="card recipe-card sm-col-12 md-col-5" style="width: 22rem;">
+<div class="card recipe-card sm-col-12 md-col-5" style="width: 30rem;">
   <h5 class="title" id="{{id}}">{{title}}</h5>
   <img src="{{image}}" alt="..." />
 
@@ -9,7 +9,7 @@
 
   <div class="ingredients">
     Ingredients:
-    {{ingred}}
+    <span class="ingredientsli">{{ingred}}</span>
   </div>
 
   <a href="{{summary}}" target="_blank" class="card-link">Click Here for Recipe</a>

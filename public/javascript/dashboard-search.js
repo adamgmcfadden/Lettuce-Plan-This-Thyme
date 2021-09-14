@@ -30,7 +30,7 @@ function getRecipe(searchValue) {
       //create the recipe card
       const recipeCard = document.createElement("div");
       recipeCard.className = `card recipe-card sm-col-12 md-col-5 `;
-      recipeCard.style="width: 22rem"
+      recipeCard.style="width: 30rem"
       recipeCard.id = recipe;
       recipesDiv.append(recipeCard);
 
@@ -79,7 +79,7 @@ function getRecipe(searchValue) {
       }
       //link to the recipe
       const recipeURL = document.createElement("a");
-      recipeURL.className = "recipeURL";
+      recipeURL.className = "recipeURL card-link";
       recipeURL.href = `${recipe.sourceUrl}`;
       recipeURL.target = `_blank`;
       recipeURL.innerText = `Click here for recipe!`;
